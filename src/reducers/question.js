@@ -8,6 +8,7 @@ import { Map } from 'immutable'
 
 const initialState = new Map({
   questions: [],
+  questionsAmount: 0,
   noQuestions: '',
   singleQuestion: '',
   pendingQuestions: false
@@ -22,7 +23,8 @@ function questionReducer(state = initialState, action) {
 
     case QUESTION_GET_SUCCESS:
       return state 
-        .set('questions', action.payload)
+        .set('questions', action.payload.data)
+        .set('questionsAmount', action.payload.questionsAmount)
         .set('pendingQuestions', false)
         
     case QUESTION_GET_FAILURE: 

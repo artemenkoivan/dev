@@ -411,6 +411,10 @@ a {
   #homepage .el-card__header {
     text-align: center;
     padding: 10px 0; }
+  #homepage .questions-more {
+    margin-top: 25px;
+    width: 100%;
+    display: block; }
   #homepage .popular-tags {
     padding: 0 0 10px 0; }
     #homepage .popular-tags .el-card__body {

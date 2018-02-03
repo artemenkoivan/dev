@@ -16,10 +16,10 @@ export function getQuestions() {
     })
 
     let questions = await axios.get(`${API_BASE}/question`)
-
+    
     dispatch({
       type: QUESTION_GET_SUCCESS,
-      payload: questions.data.data
+      payload: questions.data
     })
   }
 }
@@ -50,6 +50,21 @@ export function getOneQuestion(id) {
     dispatch({
       type: SINGLE_QUESTION_GET,
       payload: question.data.data
+    })
+  }
+}
+
+export function getQuestionsLimited(limit) {
+  return async function (dispatch) {
+    dispatch({
+      type: QUESTION_GET
+    })
+
+    let questions = await axios.get(`${API_BASE}/questions/limit/${limit}`)
+    
+    dispatch({
+      type: QUESTION_GET_SUCCESS,
+      payload: questions.data
     })
   }
 }

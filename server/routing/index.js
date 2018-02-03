@@ -41,6 +41,7 @@ router.post('/admin/tag', authenticate, tag.create)
 // Question routes
 router.post('/question', authenticate, question.create)
 router.get('/question', question.getAll)
+router.get('/questions/limit/:limit', question.getWithLimit)
 router.get('/question/:id', question.getOne)
 router.post('/question/answer', authenticate, question.addAnswer)
 router.post('/question/answer/like', authenticate, question.likeAnswer)

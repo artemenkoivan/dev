@@ -49,12 +49,55 @@ exports.create = function (req, res, next) {
   })
 }
 
-exports.getAll = function (req, res, next) {
+exports.getWithLimit = function (req, res, next) {
+  const { limit } = req.params
+  let limitNumber = parseInt(limit)
+  let questionsAmount = 0
 
+  Question.find().then(data => {
+    questionsAmount = data.length
+  })
+  
+  Question.find({})
+    .limit(limitNumber)
+    .populate('tags')
+    .then(questions => {
+      let data = []
+
+      questions.forEach(el => {
+        let questionSolved = false;
+
+        if (el.solved !== undefined) {
+          questionSolved = el.solved
+        }
+
+        data.push({
+          title: el.title,
+          solved: questionSolved,
+          answers: countAmount(el.answers.length, ['ответ', 'ответа', 'ответов']),
+          tags: el.tags.map(tag => {
+            return { title: tag.title, cover: tag.cover }
+          }),
+          createdAt: el.createdAt,
+          _id: el._id
+        })
+      })
+
+      res.status(200).json({
+        data,
+        questionsAmount
+      })
+  })
+  .catch(({ message }) => {
+    next(message)
+  })
+}
+
+// TODO: remove this
+exports.getAll = function (req, res, next) {
   Question.find({})
     .populate('tags')
     .then(questions => {
-
       let data = []
 
       questions.forEach(el => {

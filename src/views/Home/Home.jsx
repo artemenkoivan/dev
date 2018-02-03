@@ -5,17 +5,20 @@ import { connect } from 'react-redux'
 import propTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import Header from '../../components/Header'
-import { Loading, Card } from 'element-react'
+import { Loading, Card, Button } from 'element-react'
 import Search from '../../components/Search'
 import { getAllTags } from '../../actions/tag'
-import { getQuestions } from '../../actions/question'
+import { getQuestions, getQuestionsLimited } from '../../actions/question'
 import QuestionListItem from '../../components/QuestionListItem'
 
 class Home extends Component {
+  state = {
+    limitCounter: 5
+  }
 
   componentDidMount() {
     this.props.getAllTags()
-    this.props.getQuestions()
+    this.props.getQuestionsLimited(this.state.limitCounter)
 
     window.addEventListener('scroll', this.handleScroll);
   }
@@ -24,8 +27,15 @@ class Home extends Component {
     window.removeEventListener('scroll', this.handleScroll);
   }
 
-  handleScroll = () => {
+  loadMore = () => {
+    this.setState({
+      limitCounter: this.state.limitCounter + 5
+    }, () => {
+      this.props.getQuestionsLimited(this.state.limitCounter)
+    })
+  }
 
+  handleScroll = () => {
     if (this.refs.searchBox == null) return
 
     let columnWidth = ReactDOM.findDOMNode(this.refs.column).offsetWidth
@@ -44,11 +54,13 @@ class Home extends Component {
   }
 
   render() {
+    const { loadMore } = this
     const {
       userName,
       authenticated,
       tags,
-      questions
+      questions,
+      questionsAmount
     } = this.props
 
     let checkTags = []
@@ -87,6 +99,13 @@ class Home extends Component {
                           { questions.map((question, index) => {
                               return <QuestionListItem key={ index } isSolved={question.solved} question={ question } index={ index } />
                             })
+                          }
+                          { questions.length < questionsAmount ? 
+                            <Button className="questions-more" 
+                                    onClick={loadMore}
+                                    type="success">Ещё</Button>
+                            :
+                            ''
                           }
                         </div>
                       </div>
@@ -133,7 +152,8 @@ function mapStateToProps(state) {
     authenticated: state.auth.get('authenticated'),
     userName: state.user.get('userName'),
     tags: state.tag.get('tags'),
-    questions: state.question.get('questions')
+    questions: state.question.get('questions'),
+    questionsAmount: state.question.get('questionsAmount')
   }
 }
 
@@ -144,6 +164,9 @@ function mapDispatchToProps(dispatch) {
     },
     getQuestions() {
       dispatch(getQuestions())
+    },
+    getQuestionsLimited(limit) {
+      dispatch(getQuestionsLimited(limit))
     }
   }
 }
@@ -154,7 +177,9 @@ Home.propTypes = {
   tags: propTypes.array.isRequired,
   getAllTags: propTypes.func.isRequired,
   getQuestions: propTypes.func.isRequired,
-  questions: propTypes.array.isRequired
+  questions: propTypes.array.isRequired,
+  questionsAmount: propTypes.number,
+  getQuestionsLimited: propTypes.func
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
