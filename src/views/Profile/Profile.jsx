@@ -104,7 +104,18 @@ class Profile extends Component {
                                       <span>Решено </span><span style={{ color }}>{`${percent}%`}</span>
                                     </Link>
                                  }
-                      >Solved</Tabs.Pane>
+                      >
+                        {
+                          profile.answers.length ? 
+                          profile.answers.map((answer, index) => {
+                            if (answer.solved) {
+                              return <ProfileAnswers props={answer} key={index} />
+                            }
+                          })
+                          :
+                          <p>Пользователь не решил ни одного вопроса</p>
+                        }
+                      </Tabs.Pane>
                     </Tabs>
                   </div>
                 </div>

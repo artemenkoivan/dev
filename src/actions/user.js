@@ -10,6 +10,7 @@ export function getUserInfo(id) {
   return async function(dispatch) {
     let user = await axios.get(`${API_BASE}/user/${id}`, CONFIG)
 
+    console.log(user)
     if (user.status === 200) {
       if (user.data.user.accessLevel > 0) {
         document.cookie = 'al=' + user.data.user.accessLevel

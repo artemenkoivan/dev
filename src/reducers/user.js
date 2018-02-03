@@ -8,6 +8,7 @@ const initialState = new Map({
   userName: '',
   email: '',
   avatar: '',
+  createdAt: '',
   noAvatar: 'https://forum.mikrotik.com/styles/canvas/theme/images/no_avatar.jpg',
   accessLevel: access ? 1 : 0,
   profile: {}
@@ -21,6 +22,7 @@ function userReducer(state = initialState, action) {
           .set('email', action.payload.email)
           .set('accessLevel', action.payload.accessLevel)
           .set('avatar', action.payload.avatar)
+          .set('createdAt', action.payload.createdAt)
     case GET_PROFILE: 
       return state
           .set('profile', action.payload)

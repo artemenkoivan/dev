@@ -7,7 +7,6 @@ const countAmount = require('../../src/helpers/countAmount')
 exports.create = function (req, res, next) {
   const { title, body, tags, userId } = req.body
 
-
   User.findById({ _id: userId }).then(user => {
     if (!user) {
       return res.status(404).json({
@@ -199,7 +198,8 @@ exports.addAnswer = function (req, res, next) {
     author: {
       _id: author,
       name: userName
-    }
+    },
+    referenceQuestion: questionId
   })
 
   Question.findOne({ _id: questionId }).then(question => {

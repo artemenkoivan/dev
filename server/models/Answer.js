@@ -9,6 +9,9 @@ let AnswerSchema = new Schema({
   },
   likes: [],
   solved: false,
+  referenceQuestion: {
+    type: Schema.Types.ObjectId, ref: 'Question'
+  },
   question: [{ type: Schema.Types.ObjectId, ref: 'Question' }],
   comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
 })
