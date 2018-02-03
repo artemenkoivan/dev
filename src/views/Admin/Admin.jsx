@@ -71,7 +71,9 @@ class Admin extends Component {
         }
       ],
       userColumns: [
-        { type: 'index' },
+        { 
+          type: 'index'
+        },
         {
           label: 'Создан в',
           prop: 'date',

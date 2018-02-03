@@ -52,7 +52,8 @@ class NewTag extends Component {
 
     this.props.createTag(data)
     
-    if (this.props.successfully) Message.success('Тег создан')
+    Message.success('Тег создан')
+    setTimeout(() => this.props.history.push('/admin'), 200)
   }
 
   handleImageChange = e => {
@@ -70,9 +71,9 @@ class NewTag extends Component {
   }
 
   onFormChange(key, value) {
-    this.setState({
-      form: Object.assign(this.state.form, { [key]: value })
-    })
+    this.setState(state => (
+      { form: { ...state.form, [key]: value } }
+    ))
   }
 
   render() {

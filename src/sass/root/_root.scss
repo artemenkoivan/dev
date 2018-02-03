@@ -24,6 +24,10 @@ pre {
   z-index: 9999;
 }
 
+.el-table .cell {
+  padding: 0 15px !important;
+}
+
 .el-card__header {
   border-bottom: 1px solid $extra-light-gray;
 }
