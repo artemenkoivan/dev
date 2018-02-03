@@ -1,0 +1,42 @@
+.box {
+  display: flex;
+
+  // Both axes
+  &-center {
+    justify-content: center;
+    align-items: center;
+  }
+
+  // Direction
+  &-row {
+    flex-direction: row;
+  }
+  &-column {
+    flex-direction: column;
+  }
+
+  // Horizontal
+  &-h-start {
+    justify-content: flex-start;
+  }
+  &-h-center {
+    justify-content: center;
+  }
+  &-h-end {
+    justify-content: flex-end;
+  }
+  &-h-between {
+    justify-content: space-between;
+  }
+
+  // Vertical
+  &-v-start {
+    align-items: flex-start;
+  }
+  &-v-center {
+    align-items: center;
+  }
+  &-v-end {
+    align-items: flex-end;
+  }
+}

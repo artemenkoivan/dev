@@ -1,0 +1,30 @@
+#newtagpage {
+
+  .tag-upload {
+    padding-bottom: 20px;
+    border-bottom: 1px solid $extra-light-gray;
+
+    &__preview {
+      border-radius: 2px;
+      width: 150px;
+      height: 150px;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+
+  .admin-form {
+    padding: 20px 20px 0 20px;
+    border-radius: 2px;
+    border: 1px solid $extra-light-gray;
+
+    .tag-name {
+      width: 200px;
+    }
+
+    textarea {
+      width: 50%;
+      height: 150px;
+    }
+  }
+}

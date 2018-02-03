@@ -1,0 +1,126 @@
+#questionpage {
+
+  .question-title {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+
+  .question-body {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .question-author {
+    position: relative;
+    border-bottom: 1px solid $extra-light-gray;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+
+    &__avatar {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 2px;
+    }
+
+    &__name {
+      margin-left: 25px;
+    }
+
+    a {
+      color: $black;
+      margin-right: 5px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .selected-tags {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+
+    &__item {
+      display: inline-flex;
+      margin: 0 10px 10px 0;
+      padding: 4px;
+      font-size: 12px;
+      border-radius: 2px;
+      align-items: center;
+      background-color: $dark-white;
+      border: 1px solid $extra-light-gray;
+
+      span {
+        margin: 1px 0 0 5px;
+      }
+
+      img {
+        width: 16px;
+        border-radius: 1px;
+      }
+    }
+  }
+
+  .new-comment {
+    margin: 20px 0 20px 0;
+
+    .title {
+      border-bottom: 1px solid $extra-light-gray;
+      padding-bottom: 15px;
+    }
+
+    &__submit {
+      margin-top: 10px;
+    }
+  }
+
+  .answers-container {
+
+    .title {
+      border-bottom: 1px solid $extra-light-gray;
+      padding: 15px 0;
+      margin: 15px 0;
+    }
+  }
+
+  .answer-login {
+    margin-bottom: 20px;
+  }
+
+  .question-answers {
+
+    &__item {
+      display: block;
+      margin: 20px 0;
+      padding: 20px 0;
+      border-bottom: 1px solid $extra-light-gray;
+
+      .text--link {
+        display: block;
+        widows: 100px;
+      }
+
+      .answer-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+
+        .answer-comments-link {
+          color: $silver;
+
+          &:hover > span {
+            border-bottom: 1px dotted;
+          }
+        }
+      }
+    }
+  }
+
+  .no-answers {
+    padding-top: 15px;
+  }
+}

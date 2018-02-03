@@ -1,0 +1,62 @@
+.login-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 200px;
+
+
+  .el-tabs {
+
+    .el-tabs__header {
+      width: 300px;
+      margin: 0 auto 15px auto;
+    }
+
+    .el-tabs__nav {
+      width: 100%;
+    }
+
+    .el-tabs__item,
+    .is-active {
+      width: 50%;
+      text-align: center;
+    }
+  }
+
+  .login-form,
+  .register-form {
+    width: 300px;
+    padding: 10px;
+
+    .el-input {
+      margin-bottom: 10px;
+    }
+
+    p {
+      text-align: center;
+
+      a {
+        color: $blue;
+      }
+    }
+
+    .el-button {
+      width: 100%;
+      display: block;
+    }
+
+    &__logo {
+      text-align: center;
+
+      .logo-text {
+        font-size: 24px;
+        margin-bottom: 15px;
+      }
+
+      img {
+        width: 100px;
+      }
+    }
+  }
+}

@@ -1,0 +1,75 @@
+#adminpage {
+
+  .recent-actions {
+
+    .el-card__body {
+      padding: 20px 10px;
+    }
+
+    &__title {
+      padding: 0;
+      margin: 0;
+      font-weight: bolder;
+      text-align: center;
+    }
+
+    .item {
+      width: 100%;
+      display: flex;
+      margin: 5px 0;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .text {
+      font-size: 10px;
+    }
+  }
+
+  .users-table,
+  .tags-table {
+    margin-bottom: 50px;
+
+    span {
+      font-size: 12px;
+      font-weight: bold;
+    }
+  }
+
+  .table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    &__title {
+      padding: 0;
+      margin: 0;
+      font-weight: bolder;
+    }
+
+    &__button {
+
+      &--link {
+
+        a {
+          display: block;
+          color: white;
+        }
+      }
+    }
+
+    &__search {
+      width: 200px;
+    }
+  }
+
+  .table-controller-btn {
+    display: inline-block;
+    color: white;
+    margin: 0 5px 0 0;
+    padding: 2px 9px;
+    background-color: $light-blue;
+    border-radius: 2px;
+  }
+}

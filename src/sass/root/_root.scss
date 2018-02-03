@@ -1,0 +1,144 @@
+body {
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+// Highlight.js code background color
+pre {
+  background-color: $dark-white !important;
+  line-height: 1.5em;
+  font-size: 90% !important;
+  border-radius: 2px;
+}
+
+// Customize here styles for default elements of UI library
+.el-card,
+.el-menu,
+.el-autocomplete-suggestion__wrap {
+  border-radius: 0;
+  border: none !important;
+}
+
+.el-message {
+  z-index: 9999;
+}
+
+.el-card__header {
+  border-bottom: 1px solid $extra-light-gray;
+}
+
+.el-button,
+.el-tag,
+.el-input__inner,
+.el-textarea__inner {
+  border-radius: 2px !important;
+}
+
+// Styling for logo text (site name)
+.logo-text {
+  margin: 0;
+  padding: 0;
+  color: #555;
+  font-weight: bolder;
+  font-family: 'Josefin Slab', serif;
+}
+
+// Enable to style label
+[type=button] {
+  -webkit-appearance: none !important;
+}
+
+// Container fix for Flexbox grid
+@media only screen and (max-width: 1100px) {
+  .container {
+    width: 85%;
+    margin: 0 auto;
+  }
+}
+
+// Default styles for page content
+.page {
+  margin-top: 75px !important;
+
+  &-title {
+    padding-bottom: 10px;
+    border-bottom: 1px solid $extra-light-gray;
+
+    & > a {
+      color: $blue;
+    }
+  }
+}
+
+// Blockquote styling, other typography like this can be written here
+blockquote {
+  font-size: 15px;
+  font-style: italic;
+  padding-left: 1.5em;
+  margin: 5px 0;
+  font-weight: 300;
+  border-left: 2px solid $blue;
+}
+
+// Styles for title
+.title {
+  margin: 0;
+  padding: 0;
+  font-weight: bolder;
+
+  &--gray {
+    color: $silver;
+  }
+
+  &--lg {
+    font-size: 36px;
+  }
+
+  &--md {
+    font-size: 24px;
+  }
+
+  &--sm {
+    font-size: 18px;
+  }
+
+  &--xs {
+    font-size: 14px;
+  }
+}
+
+// Styles for text
+.text {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+
+  &--bold {
+    font-weight: bolder;
+  }
+
+  &--gray {
+    color: $silver;
+  }
+
+  &--black {
+    color: $black;
+  }
+
+  &--center {
+    text-align: center !important;
+  }
+
+  &--link {
+    display: block;
+
+    &:hover {
+      text-decoration: underline !important;
+    }
+  }
+
+  &--xs {
+    font-size: 12px;
+  }
+}

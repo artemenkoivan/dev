@@ -1,0 +1,36 @@
+#homepage {
+  height: 2000px;
+
+  .el-card__header {
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  .popular-tags {
+    padding: 0 0 10px 0;
+
+    .el-card__body {
+      margin: -20px;
+    }
+
+    &__list {
+      margin: 0;
+      padding: 0 0 0 0;
+      list-style-type: none;
+
+      &__item {
+        margin-top: 10px;
+        text-align: center;
+
+        a {
+          display: inline-block;
+
+          img {
+            display: block;
+            width: 25px;
+          }
+        }
+      }
+    }
+  }
+}

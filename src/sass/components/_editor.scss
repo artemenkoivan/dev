@@ -1,0 +1,52 @@
+.editor {
+
+  &__title-input {
+    margin: 10px 0;
+  }
+
+  &__textarea,
+  &__buttons {
+    margin-top: 10px;
+  }
+
+  &__tags-input {
+    margin-bottom: 10px;
+  }
+
+  .syntax-select {
+    margin-left: 10px;
+  }
+
+  .selected-tags {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+
+    &__item {
+      display: inline-flex;
+      margin: 0 10px 10px 0;
+      padding: 4px;
+      font-size: 12px;
+      border-radius: 2px;
+      align-items: center;
+      background-color: $dark-white;
+      border: 1px solid $extra-light-gray;
+    }
+  }
+
+  .title--sm {
+    margin: 0;
+    padding: 0 0 10px 0;
+    border-bottom: 0;
+  }
+
+  &-panel {
+    margin: 10px 0 0 0;
+    padding: 0;
+    list-style-type: none;
+
+    &__item {
+      display: inline-block;
+    }
+  }
+}

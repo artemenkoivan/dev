@@ -1,0 +1,111 @@
+#profilepage {
+
+  .questions-feed__item {
+    margin-top: 0 !important;
+  }
+}
+
+.user-profile {
+  margin-top: 25px;
+
+  &__activity {
+    margin-top: 15px;
+    width: 100%;
+
+    &__amount {
+      color: $black;
+    }
+
+    .text {
+      color: $silver;
+      cursor: default;
+    }
+
+    & > .item {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 0 10px;
+      min-width: 100px;
+
+      &:hover {
+        background-color: $extra-light-gray;
+      }
+
+      &:not(:first-child) {
+        border-left: 1px solid $extra-light-gray;
+      }
+    }
+  }
+  
+  &__front {
+
+    &__name {
+      margin-top: 15px;
+    }
+
+    &__avatar {
+      display: block;
+      width: 70px;
+      height: 70px;
+      margin-top: 15px;;
+      border-radius: 50%;
+    }
+  }
+
+  .user-questions {
+    
+    &__title {
+      margin-top: 50px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid $extra-light-gray;
+    }
+
+    .questions-feed__item {
+      padding: 20px 0;
+      border-bottom: 1px solid $extra-light-gray;
+
+      &:first-child {
+        margin-top: 25px;
+      }
+
+
+      &__tags {
+
+        .question-tag {
+          margin-right: 10px;
+          color: $black;
+          font-weight: bolder;
+
+          &:hover {
+            text-decoration: underline;
+          }
+
+          &__img {
+            margin-right: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 2px;
+          }
+        }
+      }
+    }
+  }
+
+  .profile-answer-item {
+    padding: 10px 0;
+    
+    &:first-child {
+      margin-top: 20px;
+    }
+
+    &:not(:first-child) {
+      border-top: 1px solid $extra-light-gray;
+    }
+
+    &__solved {
+      color: $success;
+    }
+  }
+}
