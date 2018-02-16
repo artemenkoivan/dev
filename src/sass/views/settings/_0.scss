@@ -1,0 +1,32 @@
+#settingsPage {
+
+  .settings-form {
+    padding: 20px;
+    border-radius: 2px;
+    border: 1px solid $extra-light-gray;
+
+    &__additional {
+      margin-bottom: 20px;
+    }
+
+    .el-form-item {
+      max-width: 280px;
+    }
+
+    .avatar-upload {
+      padding-bottom: 20px;
+      border-bottom: 1px solid $extra-light-gray;
+
+      &__preview {
+        display: block;
+        border-radius: 2px;
+        width: 150px;
+        border: 1px solid $extra-light-gray;
+        height: 150px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+}

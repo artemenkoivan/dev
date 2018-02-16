@@ -22,6 +22,9 @@ export const SINGLE_QUESTION_GET = 'SINGLE_QUESTION_GET'
 export const ANSWER_ADD = 'ANSWER_ADD'
 export const ANSWER_LIKE = 'ANSWER_LIKE'
 export const GET_PROFILE = 'GET_PROFILE'
+export const EDIT_PROFILE = 'EDIT_PROFILE'
+export const EDIT_PROFILE_SUCCESS = 'EDIT_PROFILE_SUCCESS'
+export const EDIT_PROFILE_ERROR = 'EDIT_PROFILE_ERROR'
 
 export const API_BASE = 'http://localhost:5000/api'
 

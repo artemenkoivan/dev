@@ -2,6 +2,18 @@ const User = require('../models/User')
 const Answer = require('../models/Answer')
 const Question = require('../models/Question')
 const countAmount = require('../../src/helpers/countAmount')
+const multer  = require('multer')
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, '../src/uploads/avatars')
+  },
+  filename: (req, file, cb) => {
+    cb(null, `${file.fieldname}-${Date.now()}.jpg`)
+  }
+})
+
+const upload = multer({ storage: storage }).single('avatar')
 
 exports.getUserInfo = function (req, res, next) {
   const id = req.params.id
@@ -37,6 +49,7 @@ exports.getProfile = function (req, res, next) {
           userName: user.userName,
           email: user.email,
           _id: user._id,
+          avatar: user.avatar,
           createdAt: user.createdAt,
           questions,
           answers: user.answers
@@ -70,4 +83,54 @@ exports.getProfile = function (req, res, next) {
     }
   })
   .catch(({ message }) => next(message))
+}
+
+exports.editProfile = function (req, res, next) {
+  const { _id, email } = req.body
+
+  User.findOne({ _id }).then(user => {
+    if (email === undefined || email === null) {
+      return res.status(200).json({
+        message: 'Эл. почта не изменилась',
+        data: user
+      })
+    }
+
+    user.email = email
+    user.save()
+
+    res.status(200).json({
+      message: 'Изменения сохранены',
+      data: user
+    })
+  })
+  .catch(({ message }) => {
+    next(message)
+  })
+}
+
+exports.editProfileAvatar = function (req, res, next) {
+  const _id = req.get('userId')
+
+  upload(req, res, error => {
+    if (error) {
+      return res.json({
+        status: 400,
+        message: error.message
+      })
+    }
+
+    User.findOne({ _id }).then(user => {
+      user.avatar = req.file.filename
+      user.save()
+      
+      res.json({
+        status: 200,
+        message: 'Изменения сохранены',
+        data: user
+      })
+    }).catch(({ message }) => {
+      next(message)
+    })
+  })
 }

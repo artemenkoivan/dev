@@ -1,5 +1,5 @@
 import { Map } from 'immutable'
-import { GET_USER_INFO, GET_PROFILE } from '../helpers/consts'
+import { GET_USER_INFO, GET_PROFILE, EDIT_PROFILE_SUCCESS } from '../helpers/consts'
 
 const al = document.cookie.split(' ')
 const access = al.includes('al=1')
@@ -11,7 +11,9 @@ const initialState = new Map({
   createdAt: '',
   noAvatar: 'https://forum.mikrotik.com/styles/canvas/theme/images/no_avatar.jpg',
   accessLevel: access ? 1 : 0,
-  profile: {}
+  profile: {},
+  message: '',
+  success: false
 })
 
 function userReducer(state = initialState, action) {
@@ -24,8 +26,9 @@ function userReducer(state = initialState, action) {
           .set('avatar', action.payload.avatar)
           .set('createdAt', action.payload.createdAt)
     case GET_PROFILE: 
-      return state
-          .set('profile', action.payload)
+      return state.set('profile', action.payload)
+    case EDIT_PROFILE_SUCCESS: 
+      return state.set('success', true)
     default:
       return state
   }

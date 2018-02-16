@@ -90,7 +90,7 @@ class QuestionPage extends Component {
                 <div className="row-fluid">
                   <div className="question-author">
                     <Link to={`/user/${singleQuestion.author.userName}`} className="text text--bold">
-                      <img src={singleQuestion.author.avatar ? singleQuestion.author.avatar : noAvatar} className="question-author__avatar" alt="img" />
+                      <img src={singleQuestion.author.avatar ? require(`../../uploads/avatars/${singleQuestion.author.avatar}`) : noAvatar} className="question-author__avatar" alt="img" />
                       <span className="question-author__name">{singleQuestion.author.userName}</span>
                     </Link>
 

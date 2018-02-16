@@ -58,7 +58,7 @@ class Profile extends Component {
                   <div className="row">
                     <div className="col-xs-12">
                       <div className="user-profile__front box box-v-center box-column">
-                        <img src={profile.avatar ? profile.avatar : noAvatar} alt="avatar" className="user-profile__front__avatar"/>
+                        <img src={profile.avatar ? require(`../../uploads/avatars/${profile.avatar}`) : noAvatar} alt="avatar" className="user-profile__front__avatar"/>
                         <h3 className="title title--sm user-profile__front__name">{profile.userName}</h3>
                       </div>
                     </div>

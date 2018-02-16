@@ -29,6 +29,8 @@ router.post('/login', auth.login)
 // User routes
 router.get('/user/:id', authenticate, user.getUserInfo)
 router.get('/profile/:name', user.getProfile)
+router.post('/profile/edit', authenticate, user.editProfile)
+router.post('/profile/edit-avatar', authenticate, user.editProfileAvatar)
 
 // Tag routes
 router.get('/tags', tag.getAll)

@@ -590,3 +590,24 @@ a {
       border-top: 1px solid #EFF2F7; }
     .user-profile .profile-answer-item__solved {
       color: #13CE66; }
+
+#settingsPage .settings-form {
+  padding: 20px;
+  border-radius: 2px;
+  border: 1px solid #EFF2F7; }
+  #settingsPage .settings-form__additional {
+    margin-bottom: 20px; }
+  #settingsPage .settings-form .el-form-item {
+    max-width: 280px; }
+  #settingsPage .settings-form .avatar-upload {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #EFF2F7; }
+    #settingsPage .settings-form .avatar-upload__preview {
+      display: block;
+      border-radius: 2px;
+      width: 150px;
+      border: 1px solid #EFF2F7;
+      height: 150px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat; }
