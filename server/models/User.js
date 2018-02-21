@@ -16,6 +16,7 @@ const UserSchema = new Schema({
   password: String,
   accessLevel: 0,
   avatar: String,
+  description: String,
   questions: [{ type: Schema.Types.ObjectId, ref: 'Question' }],
   answers: [{ type: Schema.Types.ObjectId, ref: 'Answer' }],
   tags: [{type: Schema.Types.ObjectId, ref: 'Tag'}],

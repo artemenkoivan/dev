@@ -18,6 +18,11 @@ exports.create = function (req, res, next) {
 
     tags.forEach(el => {
       data.push(el)
+
+      Tag.findOne({ _id: el._id }).then(tag => {
+        tag.questions.push(el._id)
+        tag.save()
+      })
     })
 
     let question = new Question({

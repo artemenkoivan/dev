@@ -63,24 +63,14 @@ class Home extends Component {
       questionsAmount
     } = this.props
 
-    let checkTags = []
     let popularTags = []
 
-    questions.forEach(question => {
-      question.tags.forEach(tag => {
-        let title = tag.title;
-
-        tags.forEach((el, index) => {
-          if (title === el.title) {
-            if (!!!~checkTags.indexOf(title)) {
-              checkTags.push(el.title)
-              popularTags.push(el)
-            }
-          }
-        })
-      })
+    tags.forEach((el, index) => {
+      if (el.questions.length) {
+        popularTags.push(el)
+      }
     })
-
+    
     return (
       <DocumentTitle title="GeekAsks –– Последнее">
         <div id="homepage" className="page" ref="homePage">

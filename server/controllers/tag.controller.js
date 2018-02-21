@@ -92,6 +92,7 @@ exports.getAll = function(req, res, next) {
           data.push({
             title: item.title,
             cover: item.cover,
+            questions: item.questions,
             _id: item._id
           })
         })

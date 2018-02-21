@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import DocumentTitle from 'react-document-title'
 import { getProfile } from '../../actions/user'
 import Header from '../../components/Header'
 import QuestionListItem from '../../components/QuestionListItem'
 import { Loading, Tabs } from 'element-react'
-import { Link } from 'react-router-dom'
 import ProfileAnswers from '../../components/ProfileAnswers'
 
 class Profile extends Component {
@@ -60,6 +60,7 @@ class Profile extends Component {
                       <div className="user-profile__front box box-v-center box-column">
                         <img src={profile.avatar ? require(`../../uploads/avatars/${profile.avatar}`) : noAvatar} alt="avatar" className="user-profile__front__avatar"/>
                         <h3 className="title title--sm user-profile__front__name">{profile.userName}</h3>
+                        { profile.description && <p className="text--muted">{profile.description}</p> }
                       </div>
                     </div>
                   </div>
@@ -67,9 +68,9 @@ class Profile extends Component {
                   <div className="row-fluid">
                     <Tabs activeName="1">
                     <Tabs.Pane name="1" 
-                                 label={
-                                    <Link to="#" className="title title--xs user-profile__activity__amount">Вопросов {profile.questions.length}</Link>
-                                 }
+                               label={
+                                 <Link to="#" className="title title--xs user-profile__activity__amount">Вопросов {profile.questions.length}</Link>
+                               }
                       >
                         {
                           profile.questions.length ? 
@@ -130,7 +131,8 @@ class Profile extends Component {
 function mapStateToProps(state) {
   return {
     profile: state.user.get('profile'),
-    noAvatar: state.user.get('noAvatar')
+    noAvatar: state.user.get('noAvatar'),
+    description: state.user.get('description')
   }
 }
 

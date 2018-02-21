@@ -17,7 +17,7 @@ class UserSettings extends Component {
       form: {
         email: '',
         formAvatar: null,
-        description: ''
+        formDescription: ''
       }
     }
   }
@@ -37,13 +37,14 @@ class UserSettings extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { formAvatar, email } = this.state.form
+    const { formAvatar, formDescription, email } = this.state.form
 
     let image = new FormData()
     image.append('avatar', formAvatar)
     
     this.props.editProfile({
       email,
+      description: formDescription,
       formAvatar: formAvatar === null ? '' : image,
       _id: localStorage.getItem('_id')
     })
@@ -76,12 +77,14 @@ class UserSettings extends Component {
         avatar,
         noAvatar,
         email,
-        createdAt
+        createdAt,
+        description
       },
       state: {
         imagePreviewUrl,
         form: {
-          formAvatar
+          formAvatar,
+          formDescription
         }
       },
       handleImageChange,
@@ -105,8 +108,14 @@ class UserSettings extends Component {
                     <Form.Item>
                       <Input defaultValue={email}
                              placeholder="E-mail"
-                             ref="userEmail"
                              onChange={ onFormChange.bind(this, 'email') }/>
+                    </Form.Item>
+
+                    <Form.Item>
+                      <Input defaultValue={description}
+                             placeholder="О себе"
+                             type="textarea"
+                             onChange={ onFormChange.bind(this, 'formDescription') }/>
                     </Form.Item>
 
                     <Form.Item className="avatar-upload">
@@ -153,6 +162,7 @@ function mapStateToProps(state) {
     avatar: state.user.get('avatar'),
     noAvatar: state.user.get('noAvatar'),
     email: state.user.get('email'),
+    description: state.user.get('description'),
     createdAt: state.user.get('createdAt'),
     success: state.user.get('success')
   }

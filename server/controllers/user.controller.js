@@ -49,6 +49,7 @@ exports.getProfile = function (req, res, next) {
           userName: user.userName,
           email: user.email,
           _id: user._id,
+          description: user.description,
           avatar: user.avatar,
           createdAt: user.createdAt,
           questions,
@@ -86,7 +87,7 @@ exports.getProfile = function (req, res, next) {
 }
 
 exports.editProfile = function (req, res, next) {
-  const { _id, email } = req.body
+  const { _id, email, description } = req.body
 
   User.findOne({ _id }).then(user => {
     if (email === undefined || email === null) {
@@ -96,7 +97,13 @@ exports.editProfile = function (req, res, next) {
       })
     }
 
-    user.email = email
+    if (email.length) {
+      user.email = email
+    }
+
+    if (description.length) {
+      user.description = description
+    }
     user.save()
 
     res.status(200).json({
