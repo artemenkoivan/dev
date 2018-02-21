@@ -14,6 +14,7 @@ import NewQuestion from './views/NewQuestion/NewQuestion'
 import QuestionPage from './views/QuestionPage/QuestionPage'
 import Profile from './views/Profile/Profile'
 import UserSettings from './views/UserSettings/UserSettings'
+import EditUser from './views/Admin/EditUser'
 
 class App extends Component {
   render() {
@@ -30,6 +31,7 @@ class App extends Component {
             <Route path="/question/:id" exact component={ QuestionPage } redirect="/question/"/>
             <ProtectedRoute exact path="/settings" component={UserSettings} redirect="/" canAccess={ authenticated } />
             <Route path="/user/:name" exact component={Profile} />
+            <ProtectedRoute path="/admin/user/:name" component={ EditUser } canAccess={ !!accessLevel } redirect="/" />
           </Switch>
         </div>
       </Router>

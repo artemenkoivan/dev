@@ -104,13 +104,14 @@ class Admin extends Component {
           render: (row, col, index) => {
             return (
               <span>
-                <Link to={ `/admin/user/edit/${row.name}` }
-                      className="table-controller-btn"
-                      onClick={ () => this.editUser(row, index) }>
+                <Link to={ `/admin/user/${row.name}` }
+                      className="table-controller-btn">
                   <Icon name="edit"/>
                 </Link>
 
-                <Button type="danger" size="small">
+                <Button type="danger" 
+                        size="small" 
+                        onClick={ () => this.destroyUser(row, index) }>
                   <Icon name="delete"/>
                 </Button>
               </span>
@@ -122,8 +123,15 @@ class Admin extends Component {
 
   }
 
-  editUser = (row, index) => {
-    console.log(row.name, index)
+  destroyUser = (row, index) => {
+    // TODO finish this shit
+    let remove = window.confirm(`Вы уверены что хотите удалить пользователя ${row.name}?`)
+
+    if (remove) {
+      setTimeout(() => {
+        alert('Removed')
+      }, 500);
+    }
   }
 
   editTag = (row, index) => {

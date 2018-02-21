@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import propTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import Header from '../../components/Header'
-import { Loading, Card, Button } from 'element-react'
+import { Loading, Card, Button, Tooltip } from 'element-react'
 import Search from '../../components/Search'
 import { getAllTags } from '../../actions/tag'
 import { getQuestions, getQuestionsLimited } from '../../actions/question'
@@ -117,12 +117,14 @@ class Home extends Component {
                           {
                             popularTags.map((el, index, arr) => {
                               return (
-                                <li key={ index } className="popular-tags__list__item col-xs-4 col-sm-4 col-md-3">
-                                  <Link to={ `/tag/${ el.title }` }>
-                                    <img src={ require(`../../uploads/tags/${ el.cover }`) }
-                                        alt="cover"/>
-                                  </Link>
-                                </li>
+                                <Tooltip key={ index } content={el.title} placement="top">
+                                  <li className="popular-tags__list__item col-xs-4 col-sm-4 col-md-3">
+                                    <Link to={ `/tag/${ el.title }` }>
+                                      <img src={ require(`../../uploads/tags/${ el.cover }`) }
+                                          alt="cover"/>
+                                    </Link>
+                                  </li>
+                                </Tooltip>
                               )
                             })
                           }
