@@ -72,6 +72,7 @@ class Home extends Component {
         }
       }
     })
+    
 
     return (
       <DocumentTitle title="GeekAsks –– Последнее">
