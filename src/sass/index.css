@@ -535,6 +535,10 @@ a {
 
 .user-profile {
   margin-top: 25px; }
+  .user-profile__more-questions {
+    display: block;
+    margin: 20px 0;
+    width: 100%; }
   .user-profile__activity {
     margin-top: 15px;
     width: 100%; }

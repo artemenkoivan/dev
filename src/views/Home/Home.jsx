@@ -66,11 +66,13 @@ class Home extends Component {
     let popularTags = []
 
     tags.forEach((el, index) => {
-      if (el.questions.length) {
-        popularTags.push(el)
+      if (popularTags.length <= 10) {
+        if (el.questions.length) {
+          popularTags.push(el)
+        }
       }
     })
-    
+
     return (
       <DocumentTitle title="GeekAsks –– Последнее">
         <div id="homepage" className="page" ref="homePage">

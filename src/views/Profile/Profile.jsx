@@ -5,15 +5,24 @@ import DocumentTitle from 'react-document-title'
 import { getProfile } from '../../actions/user'
 import Header from '../../components/Header'
 import QuestionListItem from '../../components/QuestionListItem'
-import { Loading, Tabs } from 'element-react'
+import { Loading, Tabs, Button } from 'element-react'
 import ProfileAnswers from '../../components/ProfileAnswers'
 
 class Profile extends Component {
+  state = {
+    questionLimit: 5
+  }
+
   componentDidMount() {
     this.props.getProfile(this.props.match.params.name)
   }
 
+  loadMore = () => {
+    this.setState({ questionLimit: this.state.questionLimit += 5 })
+  }
+
   render() {
+    const { state: { questionLimit }, loadMore } = this
     const { profile, noAvatar } = this.props
     let percent
     let counter = 0
@@ -75,10 +84,18 @@ class Profile extends Component {
                         {
                           profile.questions.length ? 
                           profile.questions.map((question, index) => {
-                            return <QuestionListItem key={ index } isSolved={question.solved} question={ question } index={ index } />
+                            if (index < questionLimit) {
+                              return <QuestionListItem key={ index } isSolved={question.solved} question={ question } index={ index } />
+                            }
                           })
                           :
                           <p>Пользователь пока не задавал вопросов</p>
+                        }
+
+                        {
+                          questionLimit >= profile.questions.length ?
+                          '' :
+                          <Button type="success" onClick={loadMore} className="user-profile__more-questions">Ещё</Button>
                         }
                       </Tabs.Pane>
                       <Tabs.Pane name="2" 
