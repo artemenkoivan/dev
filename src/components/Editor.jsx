@@ -107,7 +107,6 @@ class Editor extends Component {
   }
 
   _handleAddCode = (e) => {
-
     this.refs.textarea.refs.textarea.value += `<code lang="${e}"></code>`
   }
 
