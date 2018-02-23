@@ -10,13 +10,13 @@ import {
 } from '../helpers/consts'
 
 export function getQuestions() {
-  return async function (dispatch) {
+  return async function(dispatch) {
     dispatch({
       type: QUESTION_GET
     })
 
     let questions = await axios.get(`${API_BASE}/question`)
-    
+
     dispatch({
       type: QUESTION_GET_SUCCESS,
       payload: questions.data
@@ -25,7 +25,7 @@ export function getQuestions() {
 }
 
 export function createQuestion(data) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     dispatch({
       type: QUESTION_NEW
     })
@@ -36,15 +36,14 @@ export function createQuestion(data) {
       dispatch({
         type: QUESTION_NEW_SUCCESS
       })
-      
+
       dispatch(getQuestions())
     }
   }
 }
 
 export function getOneQuestion(id) {
-  return async function (dispatch) {
-
+  return async function(dispatch) {
     let question = await axios.get(`${API_BASE}/question/${id}`)
 
     dispatch({
@@ -55,13 +54,13 @@ export function getOneQuestion(id) {
 }
 
 export function getQuestionsLimited(limit) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     dispatch({
       type: QUESTION_GET
     })
 
     let questions = await axios.get(`${API_BASE}/questions/limit/${limit}`)
-    
+
     dispatch({
       type: QUESTION_GET_SUCCESS,
       payload: questions.data
@@ -70,7 +69,7 @@ export function getQuestionsLimited(limit) {
 }
 
 export function addAnswer(data) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     const answer = await axios.post(`${API_BASE}/question/answer`, data, CONFIG)
 
     if (answer.data.status === 400) {
@@ -82,7 +81,7 @@ export function addAnswer(data) {
 }
 
 export function likeAnswer(data) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     if (localStorage.getItem('access_token')) {
       await axios.post(`${API_BASE}/question/answer/like`, data, CONFIG)
 
@@ -93,7 +92,11 @@ export function likeAnswer(data) {
 
 export function markSolved({ answerId, questionId }) {
   return async function(dispatch) {
-    await axios.post(`${API_BASE}/question/answer/solve`, { _id: answerId, questionId }, CONFIG)
+    await axios.post(
+      `${API_BASE}/question/answer/solve`,
+      { _id: answerId, questionId },
+      CONFIG
+    )
 
     dispatch(getOneQuestion(questionId))
   }

@@ -1,6 +1,6 @@
 const express = require('express')
 const passport = require('passport')
-const pass = require('../config/passport');
+const pass = require('../config/passport')
 const User = require('../models/User')
 
 // Controllers
@@ -13,7 +13,7 @@ const question = require('../controllers/question.controller')
 
 const router = express.Router()
 
-const authenticate = passport.authenticate('jwt', { session: false });
+const authenticate = passport.authenticate('jwt', { session: false })
 
 router.get('/', (req, res) => {
   res.json({

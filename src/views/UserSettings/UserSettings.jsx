@@ -5,7 +5,7 @@ import DocumentTitle from 'react-document-title'
 import Upload from '../../components/Upload'
 import Header from '../../components/Header'
 import { Form, Input, Loading, Button, Message } from 'element-react'
-import moment from 'moment' 
+import moment from 'moment'
 import { isEmpty } from 'lodash'
 
 class UserSettings extends Component {
@@ -22,7 +22,7 @@ class UserSettings extends Component {
     }
   }
 
-  handleImageChange = (e) => {
+  handleImageChange = e => {
     let reader = new FileReader()
 
     reader.onloadend = () => {
@@ -35,13 +35,13 @@ class UserSettings extends Component {
     this.setState({ form: { formAvatar: e.target.files[0] } })
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault()
     const { formAvatar, formDescription, email } = this.state.form
 
     let image = new FormData()
     image.append('avatar', formAvatar)
-    
+
     this.props.editProfile({
       email,
       description: formDescription,
@@ -56,14 +56,12 @@ class UserSettings extends Component {
 
       setTimeout(() => {
         window.location.reload()
-      }, 500);
+      }, 500)
     }
   }
 
   onFormChange(key, value) {
-    this.setState(state => (
-      { form: { ...state.form, [key]: value } }
-    ))
+    this.setState(state => ({ form: { ...state.form, [key]: value } }))
   }
 
   componentDidMount() {
@@ -72,21 +70,8 @@ class UserSettings extends Component {
 
   render() {
     const {
-      props: {
-        userName,
-        avatar,
-        noAvatar,
-        email,
-        createdAt,
-        description
-      },
-      state: {
-        imagePreviewUrl,
-        form: {
-          formAvatar,
-          formDescription
-        }
-      },
+      props: { userName, avatar, noAvatar, email, createdAt, description },
+      state: { imagePreviewUrl, form: { formAvatar, formDescription } },
       handleImageChange,
       onFormChange,
       handleSubmit
@@ -97,59 +82,72 @@ class UserSettings extends Component {
         <div id="settingsPage" className="page">
           <Header />
 
-          { userName ?
+          {userName ? (
             <div className="container page">
               <div className="row">
                 <div className="col-xs-12">
                   <h3 className="page-title">Настройки пользователя</h3>
 
                   <Form className="settings-form" onSubmit={handleSubmit}>
-
                     <Form.Item>
-                      <Input defaultValue={email}
-                             placeholder="E-mail"
-                             onChange={ onFormChange.bind(this, 'email') }/>
+                      <Input
+                        defaultValue={email}
+                        placeholder="E-mail"
+                        onChange={onFormChange.bind(this, 'email')}
+                      />
                     </Form.Item>
 
                     <Form.Item>
-                      <Input defaultValue={description}
-                             placeholder="О себе"
-                             type="textarea"
-                             onChange={ onFormChange.bind(this, 'formDescription') }/>
+                      <Input
+                        defaultValue={description}
+                        placeholder="О себе"
+                        type="textarea"
+                        onChange={onFormChange.bind(this, 'formDescription')}
+                      />
                     </Form.Item>
 
                     <Form.Item className="avatar-upload">
-                      {
-                        imagePreviewUrl ?
-                          <div className="avatar-upload__preview"
-                               style={{backgroundImage: `url(${ imagePreviewUrl })`}} />
-                          :
-                          <img className="avatar-upload__preview"
-                               src={ avatar ? require(`../../uploads/avatars/${avatar}`) : noAvatar } />
-                      }
+                      {imagePreviewUrl ? (
+                        <div
+                          className="avatar-upload__preview"
+                          style={{ backgroundImage: `url(${imagePreviewUrl})` }}
+                        />
+                      ) : (
+                        <img
+                          className="avatar-upload__preview"
+                          src={
+                            avatar
+                              ? require(`../../uploads/avatars/${avatar}`)
+                              : noAvatar
+                          }
+                        />
+                      )}
 
-                      <Upload type="success"
-                              size="small"
-                              plain={true}
-                              action={ handleImageChange } />
+                      <Upload
+                        type="success"
+                        size="small"
+                        plain={true}
+                        action={handleImageChange}
+                      />
                     </Form.Item>
 
                     <div className="settings-form__additional">
                       <p className="text text--sm">
-                        <strong>Дата создания: </strong>{moment(createdAt).format('MMMM Do YYYY, h:mm:ss a')}
+                        <strong>Дата создания: </strong>
+                        {moment(createdAt).format('MMMM Do YYYY, h:mm:ss a')}
                       </p>
                     </div>
 
-                    <Button size="small"
-                            type="success"
-                            nativeType="submit">Сохранить настройки</Button>
+                    <Button size="small" type="success" nativeType="submit">
+                      Сохранить настройки
+                    </Button>
                   </Form>
                 </div>
               </div>
             </div>
-            :
+          ) : (
             <Loading fullscreen={true} text="Загружаем..." />
-          }
+          )}
         </div>
       </DocumentTitle>
     )

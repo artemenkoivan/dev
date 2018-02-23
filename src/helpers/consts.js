@@ -31,8 +31,8 @@ export const API_BASE = 'http://localhost:5000/api'
 let token = localStorage.getItem('access_token')
 
 export const CONFIG = {
-  'headers': {
-    'Authorization': `Bearer ${token}`
+  headers: {
+    Authorization: `Bearer ${token}`
   }
 }
 

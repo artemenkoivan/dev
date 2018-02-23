@@ -17,39 +17,32 @@ const initialState = new Map({
 })
 
 function authReducer(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case CLEAR_AUTH_ERRORS:
       return state.set('serverError', '')
     case LOGIN:
-      return state
-          .set('pending', true)
-          .set('serverError', '')
+      return state.set('pending', true).set('serverError', '')
     case LOGIN_SUCCESS:
-      return state
-          .set('pending', false)
-          .set('authenticated', true)
+      return state.set('pending', false).set('authenticated', true)
     case LOGIN_ERROR:
       return state
-          .set('serverError', action.payload)
-          .set('authenticated', false)
-          .set('pending', false)
+        .set('serverError', action.payload)
+        .set('authenticated', false)
+        .set('pending', false)
     case REGISTER:
-      return state
-          .set('pending', true)
+      return state.set('pending', true)
     case REGISTER_SUCCESS:
-      return state
-          .set('pending', false)
-          .set('authenticated', true)
+      return state.set('pending', false).set('authenticated', true)
     case REGISTER_ERROR:
       return state
-          .set('pending', false)
-          .set('authenticated', false)
-          .set('serverError', action.payload)
+        .set('pending', false)
+        .set('authenticated', false)
+        .set('serverError', action.payload)
     case LOGOUT:
       return state
-          .set('pending', false)
-          .set('authenticated', false)
-          .set('serverError', '')
+        .set('pending', false)
+        .set('authenticated', false)
+        .set('serverError', '')
     default:
       return state
   }

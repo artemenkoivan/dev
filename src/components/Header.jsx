@@ -18,15 +18,31 @@ class Header extends Component {
             <div className="col-md-2 col-sm-2 col-xs-2">
               <div className="box box-v-center">
                 <Link to="/" className="main-header__logo">
-                  <img src={logo} alt="logo"/>
+                  <img src={logo} alt="logo" />
                 </Link>
               </div>
             </div>
             <div className="col-md-10 col-sm-10 col-xs-10">
               <div className="box box-v-center box-h-end">
-                { (authenticated && logout) && <NavBar userName={ userName } accessLevel={ accessLevel } logout={ logout } /> }
-                <Button type="primary" size="small" className="new-question-button">
-                  <Link className="button-inner-link" to={ authenticated ? '/question/new' : '/login' }>Задать вопрос</Link>
+                {authenticated &&
+                  logout && (
+                    <NavBar
+                      userName={userName}
+                      accessLevel={accessLevel}
+                      logout={logout}
+                    />
+                  )}
+                <Button
+                  type="primary"
+                  size="small"
+                  className="new-question-button"
+                >
+                  <Link
+                    className="button-inner-link"
+                    to={authenticated ? '/question/new' : '/login'}
+                  >
+                    Задать вопрос
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -35,9 +51,7 @@ class Header extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12 col-sm-12 col-xs-12">
-              <div className="main-search">
-
-              </div>
+              <div className="main-search" />
             </div>
           </div>
         </div>
@@ -68,10 +82,7 @@ Header.propTypes = {
   userName: propTypes.string.isRequired,
   email: propTypes.string.isRequired,
   logout: propTypes.func.isRequired,
-  accessLevel: propTypes.oneOfType([
-    propTypes.bool,
-    propTypes.number
-  ])
+  accessLevel: propTypes.oneOfType([propTypes.bool, propTypes.number])
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

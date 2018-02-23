@@ -19,7 +19,7 @@ const UserSchema = new Schema({
   description: String,
   questions: [{ type: Schema.Types.ObjectId, ref: 'Question' }],
   answers: [{ type: Schema.Types.ObjectId, ref: 'Answer' }],
-  tags: [{type: Schema.Types.ObjectId, ref: 'Tag'}],
+  tags: [{ type: Schema.Types.ObjectId, ref: 'Tag' }],
   createdAt: {
     type: Date,
     default: Date.now

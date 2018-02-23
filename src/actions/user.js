@@ -37,25 +37,29 @@ export function getProfile(name) {
         type: GET_PROFILE,
         payload: profile.data.profile
       })
-    }, 500);
+    }, 500)
   }
 }
 
 export function editProfile(data) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     const fileConfig = {
-      'headers': {
-        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
         'Content-Type': false,
-        'userId': localStorage.getItem('_id')
+        userId: localStorage.getItem('_id')
       }
     }
 
     let response = await axios.post(`${API_BASE}/profile/edit`, data, CONFIG)
 
     if (data.formAvatar) {
-      let avatar = await axios.post(`${API_BASE}/profile/edit-avatar`, data.formAvatar, fileConfig)
-      
+      let avatar = await axios.post(
+        `${API_BASE}/profile/edit-avatar`,
+        data.formAvatar,
+        fileConfig
+      )
+
       if (avatar.status === 200) {
         dispatch({ type: EDIT_PROFILE_SUCCESS })
       }

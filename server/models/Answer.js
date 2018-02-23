@@ -3,14 +3,15 @@ const { Schema } = require('mongoose')
 
 let AnswerSchema = new Schema({
   body: String,
-  author: { 
+  author: {
     _id: String,
     name: String
   },
   likes: [],
   solved: false,
   referenceQuestion: {
-    type: Schema.Types.ObjectId, ref: 'Question'
+    type: Schema.Types.ObjectId,
+    ref: 'Question'
   },
   question: [{ type: Schema.Types.ObjectId, ref: 'Question' }],
   comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]

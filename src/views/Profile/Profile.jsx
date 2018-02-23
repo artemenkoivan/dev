@@ -18,7 +18,7 @@ class Profile extends Component {
   }
 
   loadMore = () => {
-    this.setState({ questionLimit: this.state.questionLimit += 5 })
+    this.setState({ questionLimit: (this.state.questionLimit += 5) })
   }
 
   render() {
@@ -33,7 +33,7 @@ class Profile extends Component {
     const red = '#FF4949'
 
     if (profile.answers) {
-      profile.answers.forEach((el) => {
+      profile.answers.forEach(el => {
         counter++
 
         if (el.solved) {
@@ -41,10 +41,10 @@ class Profile extends Component {
         }
       })
     }
-    
+
     if (counter !== 0 && solved !== 0) {
       percent = Math.floor(solved / counter * 100)
-          
+
       if (percent > 30 && percent < 50) {
         color = yellow
       } else if (percent >= 0 && percent < 30) {
@@ -55,90 +55,134 @@ class Profile extends Component {
     } else {
       percent = 0
     }
-    
+
     return (
-      <DocumentTitle title={ profile.userName ? `GeekAsks | ${profile.userName}` : `GeekAsks | Профиль...` }>
+      <DocumentTitle
+        title={
+          profile.userName
+            ? `GeekAsks | ${profile.userName}`
+            : `GeekAsks | Профиль...`
+        }
+      >
         <div id="profilepage" className="page">
-          {(!profile.userName || !noAvatar) ? <Loading fullscreen={true} text="Загружаем..." />
-              :
-              <div>
-                <Header />
-                <div className="container user-profile">
-                  <div className="row">
-                    <div className="col-xs-12">
-                      <div className="user-profile__front box box-v-center box-column">
-                        <img src={profile.avatar ? require(`../../uploads/avatars/${profile.avatar}`) : noAvatar} alt="avatar" className="user-profile__front__avatar"/>
-                        <h3 className="title title--sm user-profile__front__name">{profile.userName}</h3>
-                        { profile.description && <p className="text--muted">{profile.description}</p> }
-                      </div>
+          {!profile.userName || !noAvatar ? (
+            <Loading fullscreen={true} text="Загружаем..." />
+          ) : (
+            <div>
+              <Header />
+              <div className="container user-profile">
+                <div className="row">
+                  <div className="col-xs-12">
+                    <div className="user-profile__front box box-v-center box-column">
+                      <img
+                        src={
+                          profile.avatar
+                            ? require(`../../uploads/avatars/${profile.avatar}`)
+                            : noAvatar
+                        }
+                        alt="avatar"
+                        className="user-profile__front__avatar"
+                      />
+                      <h3 className="title title--sm user-profile__front__name">
+                        {profile.userName}
+                      </h3>
+                      {profile.description && (
+                        <p className="text--muted">{profile.description}</p>
+                      )}
                     </div>
                   </div>
+                </div>
 
-                  <div className="row-fluid">
-                    <Tabs activeName="1">
-                    <Tabs.Pane name="1" 
-                               label={
-                                 <Link to="#" className="title title--xs user-profile__activity__amount">Вопросов {profile.questions.length}</Link>
-                               }
-                      >
-                        {
-                          profile.questions.length ? 
-                          profile.questions.map((question, index) => {
-                            if (index < questionLimit) {
-                              return <QuestionListItem key={ index } isSolved={question.solved} question={ question } index={ index } />
-                            }
-                          })
-                          :
-                          <p>Пользователь пока не задавал вопросов</p>
-                        }
+                <div className="row-fluid">
+                  <Tabs activeName="1">
+                    <Tabs.Pane
+                      name="1"
+                      label={
+                        <Link
+                          to="#"
+                          className="title title--xs user-profile__activity__amount"
+                        >
+                          Вопросов {profile.questions.length}
+                        </Link>
+                      }
+                    >
+                      {profile.questions.length ? (
+                        profile.questions.map((question, index) => {
+                          if (index < questionLimit) {
+                            return (
+                              <QuestionListItem
+                                key={index}
+                                isSolved={question.solved}
+                                question={question}
+                                index={index}
+                              />
+                            )
+                          }
+                        })
+                      ) : (
+                        <p>Пользователь пока не задавал вопросов</p>
+                      )}
 
-                        {
-                          questionLimit >= profile.questions.length ?
-                          '' :
-                          <Button type="success" onClick={loadMore} className="user-profile__more-questions">Ещё</Button>
-                        }
-                      </Tabs.Pane>
-                      <Tabs.Pane name="2" 
-                                 label={
+                      {questionLimit >= profile.questions.length ? (
+                        ''
+                      ) : (
+                        <Button
+                          type="success"
+                          onClick={loadMore}
+                          className="user-profile__more-questions"
+                        >
+                          Ещё
+                        </Button>
+                      )}
+                    </Tabs.Pane>
+                    <Tabs.Pane
+                      name="2"
+                      label={
                         <div>
-                          <Link to="#" className="title title--xs user-profile__activity__amount">      
+                          <Link
+                            to="#"
+                            className="title title--xs user-profile__activity__amount"
+                          >
                             Ответов {profile.answers.length}
                           </Link>
                         </div>
-                      }>
-                        {
-                          profile.answers.length ? 
-                          profile.answers.map((answer, index) => {
+                      }
+                    >
+                      {profile.answers.length ? (
+                        profile.answers.map((answer, index) => {
+                          return <ProfileAnswers props={answer} key={index} />
+                        })
+                      ) : (
+                        <p>Пользователь пока не отвечал на вопросы</p>
+                      )}
+                    </Tabs.Pane>
+                    <Tabs.Pane
+                      name="3"
+                      label={
+                        <Link
+                          to="#"
+                          className="title title--xs user-profile__activity__amount"
+                        >
+                          <span>Решено </span>
+                          <span style={{ color }}>{`${percent}%`}</span>
+                        </Link>
+                      }
+                    >
+                      {profile.answers.length ? (
+                        profile.answers.map((answer, index) => {
+                          if (answer.solved) {
                             return <ProfileAnswers props={answer} key={index} />
-                          })
-                          :
-                          <p>Пользователь пока не отвечал на вопросы</p>
-                        }
-
-                      </Tabs.Pane>
-                      <Tabs.Pane name="3"
-                                 label={
-                                    <Link to="#" className="title title--xs user-profile__activity__amount">      
-                                      <span>Решено </span><span style={{ color }}>{`${percent}%`}</span>
-                                    </Link>
-                                 }
-                      >
-                        {
-                          profile.answers.length ? 
-                          profile.answers.map((answer, index) => {
-                            if (answer.solved) {
-                              return <ProfileAnswers props={answer} key={index} />
-                            }
-                          })
-                          :
-                          <p>Пользователь не решил ни одного вопроса</p>
-                        }
-                      </Tabs.Pane>
-                    </Tabs>
-                  </div>
+                          }
+                        })
+                      ) : (
+                        <p>Пользователь не решил ни одного вопроса</p>
+                      )}
+                    </Tabs.Pane>
+                  </Tabs>
                 </div>
               </div>
-          }
+            </div>
+          )}
         </div>
       </DocumentTitle>
     )

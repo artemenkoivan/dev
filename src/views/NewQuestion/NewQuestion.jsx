@@ -5,7 +5,6 @@ import Header from '../../components/Header'
 import Editor from '../../components/Editor'
 
 class NewQuestion extends Component {
-
   render() {
     return (
       <DocumentTitle title="GeekAsks –– Задать вопрос">
@@ -21,13 +20,9 @@ class NewQuestion extends Component {
                 <Editor />
               </div>
 
-              <div className="col-sm-3 col-xs-12">
-
-              </div>
+              <div className="col-sm-3 col-xs-12" />
             </div>
           </div>
-
-
         </div>
       </DocumentTitle>
     )

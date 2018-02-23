@@ -6,7 +6,6 @@ const initialState = new Map({
 })
 
 function searchReducer(state = initialState, action) {
-  
   if (action.type === SEARCH) {
     return state.set('results', action.payload)
   } else {

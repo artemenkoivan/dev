@@ -2,11 +2,11 @@ const Tag = require('../models/Tag')
 const User = require('../models/User')
 const Question = require('../models/Question')
 
-exports.search = function (req, res, next) {
+exports.search = function(req, res, next) {
   const query = req.params.any
   const searchResults = []
 
-  let userRequest = User.find({'userName': { '$regex': query, '$options': 'i' }})
+  let userRequest = User.find({ userName: { $regex: query, $options: 'i' } })
     .then(results => {
       if (!results) {
         return res.json({
@@ -19,7 +19,7 @@ exports.search = function (req, res, next) {
         searchResults.push({
           value: el.userName,
           img: el.avatar,
-          address: '/user/' + el.userName 
+          address: '/user/' + el.userName
         })
       })
     })
@@ -27,7 +27,7 @@ exports.search = function (req, res, next) {
       next(message)
     })
 
-  let tagRequest = Tag.find({'title': { '$regex': query, '$options': 'i' }})
+  let tagRequest = Tag.find({ title: { $regex: query, $options: 'i' } })
     .then(results => {
       if (!results) {
         return res.json({
@@ -48,7 +48,9 @@ exports.search = function (req, res, next) {
       next(message)
     })
 
-  let questionRequest = Question.find({'title': { '$regex': query, '$options': 'i' }})
+  let questionRequest = Question.find({
+    title: { $regex: query, $options: 'i' }
+  })
     .then(results => {
       if (!results) {
         return res.status(404).json({
@@ -67,12 +69,13 @@ exports.search = function (req, res, next) {
       next(message)
     })
 
-  Promise.all([userRequest, tagRequest, questionRequest]).then(function () {
-    res.status(200).json({
-      searchResults
+  Promise.all([userRequest, tagRequest, questionRequest])
+    .then(function() {
+      res.status(200).json({
+        searchResults
+      })
     })
-  })
-  .catch(({ message }) => {
-    return next(message)
-  })
+    .catch(({ message }) => {
+      return next(message)
+    })
 }

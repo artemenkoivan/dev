@@ -3,38 +3,45 @@ import { Link } from 'react-router-dom'
 import { Menu, Badge } from 'element-react'
 
 class NavBar extends Component {
-
   render() {
     const { userName, logout, accessLevel } = this.props
 
     return (
-        <Menu mode="horizontal" className="main-header__navbar">
-          <Menu.Item index="1">
-            <Link to="/feed/my">Моя лента</Link>
+      <Menu mode="horizontal" className="main-header__navbar">
+        <Menu.Item index="1">
+          <Link to="/feed/my">Моя лента</Link>
+        </Menu.Item>
+        <Menu.SubMenu index="2" title={userName}>
+          <Menu.Item index="2-1">
+            <Link to={`/questions/${userName}`}>Мои вопросы</Link>
           </Menu.Item>
-          <Menu.SubMenu index="2" title={ userName }>
-            <Menu.Item index="2-1">
-              <Link to={`/questions/${userName}`}>Мои вопросы</Link>
+          <Menu.Item index="2-2">
+            <Badge value={2}>
+              <Link to="/notifications">Уведомления</Link>
+            </Badge>
+          </Menu.Item>
+          <Menu.Item index="2-3">
+            <Link to={`/user/${userName}`}>Профиль</Link>
+          </Menu.Item>
+          <Menu.Item index="2-4" className="sub-sub-menu">
+            <Link to="/settings">
+              <i className="el-icon-setting" />Настройки
+            </Link>
+          </Menu.Item>
+          {accessLevel && (
+            <Menu.Item index="2-5">
+              <Link to="/admin">
+                <i className="el-icon-edit" />Admin
+              </Link>
             </Menu.Item>
-            <Menu.Item index="2-2">
-              <Badge value={ 2 }>
-                <Link to="/notifications">Уведомления</Link>
-              </Badge>
-            </Menu.Item>
-            <Menu.Item index="2-3">
-              <Link to={`/user/${ userName }`}>Профиль</Link>
-            </Menu.Item>
-            <Menu.Item index="2-4" className="sub-sub-menu">
-              <Link to="/settings"><i className="el-icon-setting"></i>Настройки</Link>
-            </Menu.Item>
-            { accessLevel &&
-              <Menu.Item index="2-5">
-                <Link to="/admin"><i className="el-icon-edit"></i>Admin</Link>
-              </Menu.Item>
-            }
-            <Menu.Item index={ accessLevel ? '2-6' : '2-5' }><a href="" onClick={ logout }><i className="el-icon-arrow-left"></i>Выход</a></Menu.Item>
-          </Menu.SubMenu>
-        </Menu>
+          )}
+          <Menu.Item index={accessLevel ? '2-6' : '2-5'}>
+            <a href="" onClick={logout}>
+              <i className="el-icon-arrow-left" />Выход
+            </a>
+          </Menu.Item>
+        </Menu.SubMenu>
+      </Menu>
     )
   }
 }

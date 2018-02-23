@@ -3,14 +3,7 @@ import { connect } from 'react-redux'
 import DocumentTitle from 'react-document-title'
 import Header from '../../components/Header'
 import { Link } from 'react-router-dom'
-import {
-  Table,
-  Button,
-  Icon,
-  Card,
-  Loading,
-  Tag
-} from 'element-react'
+import { Table, Button, Icon, Card, Loading, Tag } from 'element-react'
 import { getAllUsers } from '../../actions/admin'
 import { getAllTags } from '../../actions/tag'
 import moment from 'moment'
@@ -25,26 +18,28 @@ class Admin extends Component {
         { type: 'index' },
         {
           label: 'Название',
-          render: function (data) {
+          render: function(data) {
             return (
               <span>
-                <span>{ data.title }</span>
+                <span>{data.title}</span>
               </span>
             )
           }
         },
         {
           label: 'Картинка',
-          render: function (data) {
+          render: function(data) {
             return (
               <span>
                 <span>
-                  <img src={ require(`../../uploads/tags/${data.cover}`) }
-                       alt="cover"
-                       style={{
-                         width: '25px',
-                         display: 'block'
-                       }}/>
+                  <img
+                    src={require(`../../uploads/tags/${data.cover}`)}
+                    alt="cover"
+                    style={{
+                      width: '25px',
+                      display: 'block'
+                    }}
+                  />
                 </span>
               </span>
             )
@@ -56,14 +51,16 @@ class Admin extends Component {
           render: (row, col, index) => {
             return (
               <span>
-                <Link to={ `/admin/tag/edit/${row.title}` }
-                      className="table-controller-btn"
-                      onClick={ () => this.editTag(row, index) }>
-                  <Icon name="edit"/>
+                <Link
+                  to={`/admin/tag/edit/${row.title}`}
+                  className="table-controller-btn"
+                  onClick={() => this.editTag(row, index)}
+                >
+                  <Icon name="edit" />
                 </Link>
 
                 <Button type="danger" size="small">
-                  <Icon name="delete"/>
+                  <Icon name="delete" />
                 </Button>
               </span>
             )
@@ -71,7 +68,7 @@ class Admin extends Component {
         }
       ],
       userColumns: [
-        { 
+        {
           type: 'index'
         },
         {
@@ -80,7 +77,7 @@ class Admin extends Component {
           render: function(data) {
             return (
               <span>
-                <span>{ moment(data.date).format('YYYY-MM-DD HH:mm') }</span>
+                <span>{moment(data.date).format('YYYY-MM-DD HH:mm')}</span>
               </span>
             )
           }
@@ -89,14 +86,14 @@ class Admin extends Component {
           label: 'Имя',
           prop: 'name',
           render: function(data) {
-            return <span>{ data.name }</span>
+            return <span>{data.name}</span>
           }
         },
         {
           label: 'ID',
           prop: 'id',
           render: function(data) {
-            return <span>{ data._id }</span>
+            return <span>{data._id}</span>
           }
         },
         {
@@ -104,15 +101,19 @@ class Admin extends Component {
           render: (row, col, index) => {
             return (
               <span>
-                <Link to={ `/admin/user/${row.name}` }
-                      className="table-controller-btn">
-                  <Icon name="edit"/>
+                <Link
+                  to={`/admin/user/${row.name}`}
+                  className="table-controller-btn"
+                >
+                  <Icon name="edit" />
                 </Link>
 
-                <Button type="danger" 
-                        size="small" 
-                        onClick={ () => this.destroyUser(row, index) }>
-                  <Icon name="delete"/>
+                <Button
+                  type="danger"
+                  size="small"
+                  onClick={() => this.destroyUser(row, index)}
+                >
+                  <Icon name="delete" />
                 </Button>
               </span>
             )
@@ -120,17 +121,18 @@ class Admin extends Component {
         }
       ]
     }
-
   }
 
   destroyUser = (row, index) => {
     // TODO finish this shit
-    let remove = window.confirm(`Вы уверены что хотите удалить пользователя ${row.name}?`)
+    let remove = window.confirm(
+      `Вы уверены что хотите удалить пользователя ${row.name}?`
+    )
 
     if (remove) {
       setTimeout(() => {
         alert('Removed')
-      }, 500);
+      }, 500)
     }
   }
 
@@ -142,10 +144,10 @@ class Admin extends Component {
     let name = e.target.value
 
     let filtered = this.props.users
-        .filter(el => {
-          return !!~el.name.toLowerCase().indexOf(name.toLowerCase())
-        })
-        .map(el => el)
+      .filter(el => {
+        return !!~el.name.toLowerCase().indexOf(name.toLowerCase())
+      })
+      .map(el => el)
 
     this.setState({
       filteredUsers: filtered
@@ -162,7 +164,7 @@ class Admin extends Component {
     const { users, tags, pendingUsers, pendingTags } = this.props
     const { filteredItems } = this
 
-    let usersData;
+    let usersData
 
     if (filteredUsers.length) {
       usersData = filteredUsers
@@ -187,22 +189,24 @@ class Admin extends Component {
                 <div className="table-header">
                   <p className="table-header__title">Пользователи</p>
                   <div className="el-input table-header__search">
-                    <i className="el-input__icon el-icon-search"></i>
-                    <input type="text"
-                           onChange={ filteredItems }
-                           className="el-input__inner"
-                           placeholder="Имя"/>
+                    <i className="el-input__icon el-icon-search" />
+                    <input
+                      type="text"
+                      onChange={filteredItems}
+                      className="el-input__inner"
+                      placeholder="Имя"
+                    />
                   </div>
                 </div>
-                <Loading loading={ pendingUsers }>
+                <Loading loading={pendingUsers}>
                   <Table
-                      className="users-table"
-                      style={{ width: '100%' }}
-                      columns={ userColumns }
-                      data={ usersData }
-                      emptyText="Пусто..."
-                      border={ true }
-                      maxHeight={ 200 }
+                    className="users-table"
+                    style={{ width: '100%' }}
+                    columns={userColumns}
+                    data={usersData}
+                    emptyText="Пусто..."
+                    border={true}
+                    maxHeight={200}
                   />
                 </Loading>
 
@@ -210,32 +214,44 @@ class Admin extends Component {
                   <p className="table-header__title">Теги</p>
 
                   <div className="table-header__secondary">
-                    <Link to="/admin/tag/new" className="el-button el-button--success"><Icon name="plus" /></Link>
+                    <Link
+                      to="/admin/tag/new"
+                      className="el-button el-button--success"
+                    >
+                      <Icon name="plus" />
+                    </Link>
                   </div>
                 </div>
-                <Loading loading={ pendingTags }>
+                <Loading loading={pendingTags}>
                   <Table
-                      className="tags-table"
-                      style={{ width: '100%' }}
-                      columns={ tagColumns }
-                      data={ tags }
-                      emptyText="Пусто..."
-                      border={ true }
-                      maxHeight={ 200 }
+                    className="tags-table"
+                    style={{ width: '100%' }}
+                    columns={tagColumns}
+                    data={tags}
+                    emptyText="Пусто..."
+                    border={true}
+                    maxHeight={200}
                   />
                 </Loading>
               </div>
               <div className="col-sm-3 col-xs-12">
                 <div className="recent-actions">
                   <Card
-                      className="recent-actions__box"
-                      header={
-                        <div className="clearfix">
-                          <p className="recent-actions__title">Недавние действия</p>
-                        </div>}
+                    className="recent-actions__box"
+                    header={
+                      <div className="clearfix">
+                        <p className="recent-actions__title">
+                          Недавние действия
+                        </p>
+                      </div>
+                    }
                   >
-                    <Tag type="danger" className="text item">Пользователь Test2 удален</Tag>
-                    <Tag type="success" className="text item">Добавлен тег JavaScript</Tag>
+                    <Tag type="danger" className="text item">
+                      Пользователь Test2 удален
+                    </Tag>
+                    <Tag type="success" className="text item">
+                      Добавлен тег JavaScript
+                    </Tag>
                   </Card>
                 </div>
               </div>
@@ -259,7 +275,6 @@ class Admin extends Component {
 // })
 
 function mapStateToProps(state) {
-
   return {
     users: state.admin.get('users'),
     pendingUsers: state.admin.get('pendingUsers'),
@@ -270,7 +285,6 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-
   return {
     getAllUsers() {
       dispatch(getAllUsers())

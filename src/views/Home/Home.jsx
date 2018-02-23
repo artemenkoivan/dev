@@ -20,19 +20,22 @@ class Home extends Component {
     this.props.getAllTags()
     this.props.getQuestionsLimited(this.state.limitCounter)
 
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('scroll', this.handleScroll)
   }
 
   loadMore = () => {
-    this.setState({
-      limitCounter: this.state.limitCounter + 5
-    }, () => {
-      this.props.getQuestionsLimited(this.state.limitCounter)
-    })
+    this.setState(
+      {
+        limitCounter: this.state.limitCounter + 5
+      },
+      () => {
+        this.props.getQuestionsLimited(this.state.limitCounter)
+      }
+    )
   }
 
   handleScroll = () => {
@@ -72,70 +75,85 @@ class Home extends Component {
         }
       }
     })
-    
 
     return (
       <DocumentTitle title="GeekAsks –– Последнее">
         <div id="homepage" className="page" ref="homePage">
-            {(!userName && authenticated) ? <Loading fullscreen={true} text="Загружаем..." />
-              :
-              <div>
-                <Header />
-                <div className="container">
-                  <div className="row">
-                    <div className="col-sm-9 col-xs-12" ref="column">
-                      <Search ref="searchBox" />
+          {!userName && authenticated ? (
+            <Loading fullscreen={true} text="Загружаем..." />
+          ) : (
+            <div>
+              <Header />
+              <div className="container">
+                <div className="row">
+                  <div className="col-sm-9 col-xs-12" ref="column">
+                    <Search ref="searchBox" />
 
-                      <div className="row-fluid">
-                        <div className="questions-feed">
-                          <h3 className="title title--md">Лента вопросов</h3>
-                          { questions.map((question, index) => {
-                              return <QuestionListItem key={ index } isSolved={question.solved} question={ question } index={ index } />
-                            })
-                          }
-                          { questions.length < questionsAmount ? 
-                            <Button className="questions-more" 
-                                    onClick={loadMore}
-                                    type="success">Ещё</Button>
-                            :
-                            ''
-                          }
-                        </div>
+                    <div className="row-fluid">
+                      <div className="questions-feed">
+                        <h3 className="title title--md">Лента вопросов</h3>
+                        {questions.map((question, index) => {
+                          return (
+                            <QuestionListItem
+                              key={index}
+                              isSolved={question.solved}
+                              question={question}
+                              index={index}
+                            />
+                          )
+                        })}
+                        {questions.length < questionsAmount ? (
+                          <Button
+                            className="questions-more"
+                            onClick={loadMore}
+                            type="success"
+                          >
+                            Ещё
+                          </Button>
+                        ) : (
+                          ''
+                        )}
                       </div>
                     </div>
+                  </div>
 
-                    <div className="col-sm-3 col-xs-12 xs-top">
-                      <Card
-                        className="popular-tags"
-                        header={
-                          <div className="clearfix">
-                            <p className="title title--xs">Популярные теги</p>
-                          </div>
-                        }
-                      >
-                        <ul className="popular-tags__list row">
-                          {
-                            popularTags.map((el, index, arr) => {
-                              return (
-                                <Tooltip key={ index } content={el.title} placement="top">
-                                  <li className="popular-tags__list__item col-xs-4 col-sm-4 col-md-3">
-                                    <Link to={ `/tag/${ el.title }` }>
-                                      <img src={ require(`../../uploads/tags/${ el.cover }`) }
-                                          alt="cover"/>
-                                    </Link>
-                                  </li>
-                                </Tooltip>
-                              )
-                            })
-                          }
-                        </ul>
-                      </Card>
-                    </div>
+                  <div className="col-sm-3 col-xs-12 xs-top">
+                    <Card
+                      className="popular-tags"
+                      header={
+                        <div className="clearfix">
+                          <p className="title title--xs">Популярные теги</p>
+                        </div>
+                      }
+                    >
+                      <ul className="popular-tags__list row">
+                        {popularTags.map((el, index, arr) => {
+                          return (
+                            <Tooltip
+                              key={index}
+                              content={el.title}
+                              placement="top"
+                            >
+                              <li className="popular-tags__list__item col-xs-4 col-sm-4 col-md-3">
+                                <Link to={`/tag/${el.title}`}>
+                                  <img
+                                    src={require(`../../uploads/tags/${
+                                      el.cover
+                                    }`)}
+                                    alt="cover"
+                                  />
+                                </Link>
+                              </li>
+                            </Tooltip>
+                          )
+                        })}
+                      </ul>
+                    </Card>
                   </div>
                 </div>
-
               </div>
-          }
+            </div>
+          )}
         </div>
       </DocumentTitle>
     )

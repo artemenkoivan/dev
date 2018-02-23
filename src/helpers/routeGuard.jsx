@@ -5,8 +5,8 @@ import { Route, Redirect, withRouter } from 'react-router-dom'
 class RouteGuard extends Component {
 
   render() {
-    let { canAccess, component, redirect, path, name, exact, strict } = this.props
-    let routeProps = { path, component, name, exact, strict }
+    const { canAccess, component, redirect, path, name, exact, strict } = this.props
+    const routeProps = { path, component, name, exact, strict }
 
     return canAccess ? <Route { ...routeProps } /> : <Redirect to={ redirect } />
   }

@@ -1,4 +1,4 @@
-module.exports = function (num, arr) {
+module.exports = function(num, arr) {
   if (num > 4 && num < 20) {
     return num + ' ' + arr[2]
   }

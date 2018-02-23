@@ -1,10 +1,5 @@
 import { Map } from 'immutable'
-import {
-  PENDING_TAGS,
-  TAG_GET_ALL,
-  TAG_GET
-} from '../helpers/consts'
-
+import { PENDING_TAGS, TAG_GET_ALL, TAG_GET } from '../helpers/consts'
 
 const initialState = new Map({
   tags: [],
@@ -13,18 +8,13 @@ const initialState = new Map({
 })
 
 function tagReducer(state = initialState, action) {
-
-  switch(action.type) {
+  switch (action.type) {
     case PENDING_TAGS:
       return state.set('pendingTags', true)
     case TAG_GET_ALL:
-      return state
-          .set('tags', action.payload)
-          .set('pendingTags', false)
-    case TAG_GET: 
-      return state
-          .set('searchTag', action.payload)
-          .set('pending', false)
+      return state.set('tags', action.payload).set('pendingTags', false)
+    case TAG_GET:
+      return state.set('searchTag', action.payload).set('pending', false)
     default:
       return state
   }

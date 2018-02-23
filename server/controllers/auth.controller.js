@@ -11,7 +11,6 @@ exports.register = function(request, response, next) {
       status: 400,
       message: 'Данные введены неверно'
     })
-
   } else {
     User.findOne({ email }).then(user => {
       if (user) {
@@ -20,22 +19,23 @@ exports.register = function(request, response, next) {
           message: 'Пользователь с таким e-mail уже существует'
         })
       }
-      
-      User.create(credentials).then(user => {
-        let token = jwt.sign({ _id: user._id }, config.secret)
 
-        return response.json({
-          access_token: token,
-          user: {
-            id: user.id,
-            email,
-            userName: user.userName
-          }
+      User.create(credentials)
+        .then(user => {
+          let token = jwt.sign({ _id: user._id }, config.secret)
+
+          return response.json({
+            access_token: token,
+            user: {
+              id: user.id,
+              email,
+              userName: user.userName
+            }
+          })
         })
-
-      }).catch(error => {
-        next(error)
-      })
+        .catch(error => {
+          next(error)
+        })
     })
   }
 }
@@ -44,9 +44,11 @@ exports.login = function(request, response, next) {
   let { email, password } = request.body
 
   User.findOne({ email })
-      .then(user => {
-        if (user) {
-          user.comparePasswords(password).then(function(password) {
+    .then(user => {
+      if (user) {
+        user
+          .comparePasswords(password)
+          .then(function(password) {
             if (!password) {
               return response.json({
                 status: 400,
@@ -65,19 +67,18 @@ exports.login = function(request, response, next) {
                 }
               })
             }
-
-          }).catch(({ message }) => {
+          })
+          .catch(({ message }) => {
             next(message)
           })
-
-        } else {
-          return response.json({
-            status: 404,
-            message: 'Пользователь с таким E-mail не найден'
-          })
-        }
-      })
-      .catch(({ message }) => {
-        next(message)
-      })
+      } else {
+        return response.json({
+          status: 404,
+          message: 'Пользователь с таким E-mail не найден'
+        })
+      }
+    })
+    .catch(({ message }) => {
+      next(message)
+    })
 }

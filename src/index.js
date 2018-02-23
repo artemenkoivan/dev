@@ -12,7 +12,7 @@ import getUser from './helpers/getUser'
 getUser()
 
 ReactDOM.render(
-  <Provider store={ store }>
+  <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById('geekasks')

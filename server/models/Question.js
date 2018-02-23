@@ -13,7 +13,7 @@ let QuestionSchema = new Schema({
     ref: 'User'
   },
   tags: [{ type: Schema.Types.ObjectId, ref: 'Tag' }],
-  answers: [{  type: Schema.Types.ObjectId, ref: 'Answer' }],
+  answers: [{ type: Schema.Types.ObjectId, ref: 'Answer' }],
   solved: false,
   createdAt: {
     type: Date,

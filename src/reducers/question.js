@@ -15,25 +15,22 @@ const initialState = new Map({
 })
 
 function questionReducer(state = initialState, action) {
-
   switch (action.type) {
     case QUESTION_GET:
-      return state
-        .set('pendingQuestions', true)
+      return state.set('pendingQuestions', true)
 
     case QUESTION_GET_SUCCESS:
-      return state 
+      return state
         .set('questions', action.payload.data)
         .set('questionsAmount', action.payload.questionsAmount)
         .set('pendingQuestions', false)
-        
-    case QUESTION_GET_FAILURE: 
-      return state 
+
+    case QUESTION_GET_FAILURE:
+      return state
         .set('noQuestions', action.payload)
         .set('pendingQuestions', false)
     case SINGLE_QUESTION_GET:
-      return state
-        .set('singleQuestion', action.payload)
+      return state.set('singleQuestion', action.payload)
     default:
       return state
   }

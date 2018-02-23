@@ -24,7 +24,7 @@ class Search extends Component {
 
       setTimeout(() => {
         callback(this.props.results)
-      }, 500);
+      }, 500)
     }
 
     if (!queryString.length) {
@@ -34,19 +34,18 @@ class Search extends Component {
 
   render() {
     const { value } = this.state
-    const { querySearch$ } = this 
+    const { querySearch$ } = this
 
     return (
       <div className="search-box">
         <div className="search">
           <AutoComplete
-              icon="search"
-              placeholder="Найти"
-              value={ value }
-              fetchSuggestions={ querySearch$ }
-              customItem={SearchItem}
-          >
-          </AutoComplete>
+            icon="search"
+            placeholder="Найти"
+            value={value}
+            fetchSuggestions={querySearch$}
+            customItem={SearchItem}
+          />
         </div>
       </div>
     )
@@ -61,7 +60,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    searchQuery: (query) => {
+    searchQuery: query => {
       dispatch(searchQuery(query))
     }
   }

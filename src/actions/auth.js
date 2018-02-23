@@ -23,7 +23,10 @@ export function login(data) {
       let loginResponse = await axios.post(`${API_BASE}/login`, data)
 
       setTimeout(() => {
-        if (loginResponse.data.status > 200 && loginResponse.data.status < 500) {
+        if (
+          loginResponse.data.status > 200 &&
+          loginResponse.data.status < 500
+        ) {
           return dispatch({
             type: LOGIN_ERROR,
             payload: loginResponse.data.message
@@ -40,9 +43,7 @@ export function login(data) {
 
           window.location.reload()
         }
-
       }, ACTION_DELAY)
-
     } catch ({ message }) {
       dispatch({
         type: LOGIN_ERROR,
@@ -62,7 +63,10 @@ export function register(data) {
       let registerResponse = await axios.post(`${API_BASE}/register`, data)
 
       setTimeout(() => {
-        if (registerResponse.data.status > 200 && registerResponse.data.status < 500) {
+        if (
+          registerResponse.data.status > 200 &&
+          registerResponse.data.status < 500
+        ) {
           return dispatch({
             type: REGISTER_ERROR,
             payload: registerResponse.data.message
@@ -70,7 +74,10 @@ export function register(data) {
         }
 
         if (registerResponse.data.access_token) {
-          localStorage.setItem('access_token', registerResponse.data.access_token)
+          localStorage.setItem(
+            'access_token',
+            registerResponse.data.access_token
+          )
           localStorage.setItem('_id', registerResponse.data.user.id)
 
           dispatch({
@@ -79,9 +86,7 @@ export function register(data) {
 
           window.location.reload()
         }
-
       }, ACTION_DELAY)
-
     } catch ({ message }) {
       dispatch({
         type: REGISTER_ERROR,

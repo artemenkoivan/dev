@@ -4,13 +4,7 @@ import DocumentTitle from 'react-document-title'
 import propTypes from 'prop-types'
 import Header from '../../components/Header'
 import logo from '../../assets/logo-transparent.png'
-import {
-  Input,
-  Button,
-  Tabs,
-  Message,
-  Loading
-} from 'element-react'
+import { Input, Button, Tabs, Message, Loading } from 'element-react'
 import { login, register, clearAuthErrors } from '../../actions/auth'
 
 const emailRegxp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
@@ -20,8 +14,7 @@ class Login extends Component {
   constructor() {
     super()
 
-    this.state = {
-    }
+    this.state = {}
   }
 
   handleLogin = e => {
@@ -34,9 +27,10 @@ class Login extends Component {
 
     if (!loginData.email) {
       return Message.error('Введите адрес электронной почты')
-
     } else if (!emailRegxp.test(loginData.email)) {
-      return Message.warning('Адрес электронной почты введен не верно! example@mail.com')
+      return Message.warning(
+        'Адрес электронной почты введен не верно! example@mail.com'
+      )
     }
 
     if (!loginData.password) {
@@ -60,13 +54,17 @@ class Login extends Component {
     if (!registerData.userName) {
       return Message.error('Введите имя пользователя')
     } else if (!userNameRegexp.test(registerData.userName)) {
-      return Message.warning('Имя может содержать только a-zA-Z0-9, имя не может начинаться с цифр и должно содержать минимум 3 символа')
+      return Message.warning(
+        'Имя может содержать только a-zA-Z0-9, имя не может начинаться с цифр и должно содержать минимум 3 символа'
+      )
     }
 
     if (!registerData.email) {
       return Message.error('Введите адрес электронной почты')
     } else if (!emailRegxp.test(registerData.email)) {
-      return Message.warning('Адрес электронной почты введен не верно! example@mail.com')
+      return Message.warning(
+        'Адрес электронной почты введен не верно! example@mail.com'
+      )
     }
 
     if (!registerData.password) {
@@ -100,36 +98,56 @@ class Login extends Component {
           <div className="login-form-container">
             <Tabs value="1">
               <Tabs.Pane label="Вход" name="1">
-                <form className="login-form" onSubmit={ handleLogin }>
+                <form className="login-form" onSubmit={handleLogin}>
                   <div className="login-form__logo">
-                    <img src={ logo } alt="logo"/>
+                    <img src={logo} alt="logo" />
                     <p className="logo-text">GeekAsks</p>
                   </div>
                   <Input placeholder="E-mail" ref="loginEmail" type="email" />
-                  <Input placeholder="Пароль" ref="loginPassword" type="password"/>
+                  <Input
+                    placeholder="Пароль"
+                    ref="loginPassword"
+                    type="password"
+                  />
 
-                  { pending ?
-                      <Loading><Button type="success" nativeType="submit">Войти</Button></Loading>
-                      :
-                      <Button type="success" nativeType="submit">Войти</Button>
-                  }
+                  {pending ? (
+                    <Loading>
+                      <Button type="success" nativeType="submit">
+                        Войти
+                      </Button>
+                    </Loading>
+                  ) : (
+                    <Button type="success" nativeType="submit">
+                      Войти
+                    </Button>
+                  )}
                 </form>
               </Tabs.Pane>
               <Tabs.Pane label="Регистрация">
-                <form className="register-form" onSubmit={ handleRegister }>
+                <form className="register-form" onSubmit={handleRegister}>
                   <div className="register-form__logo">
-                    <img src={ logo } alt="logo"/>
+                    <img src={logo} alt="logo" />
                     <p className="logo-text">GeekAsks</p>
                   </div>
                   <Input placeholder="Имя" type="text" ref="regName" />
                   <Input placeholder="E-mail" type="email" ref="regEmail" />
-                  <Input placeholder="Пароль" type="password" ref="regPassword" />
+                  <Input
+                    placeholder="Пароль"
+                    type="password"
+                    ref="regPassword"
+                  />
 
-                  { pending ?
-                      <Loading><Button type="success" nativeType="submit">Зарегестрироваться</Button></Loading>
-                      :
-                      <Button type="success" nativeType="submit">Зарегестрироваться</Button>
-                  }
+                  {pending ? (
+                    <Loading>
+                      <Button type="success" nativeType="submit">
+                        Зарегестрироваться
+                      </Button>
+                    </Loading>
+                  ) : (
+                    <Button type="success" nativeType="submit">
+                      Зарегестрироваться
+                    </Button>
+                  )}
                 </form>
               </Tabs.Pane>
             </Tabs>
@@ -141,7 +159,6 @@ class Login extends Component {
 }
 
 function mapStateToProps(state) {
-
   return {
     authenticated: state.auth.get('authenticated'),
     serverError: state.auth.get('serverError'),
@@ -150,12 +167,11 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-
   return {
-    login: (data) => {
+    login: data => {
       dispatch(login(data))
     },
-    register: (data) => {
+    register: data => {
       dispatch(register(data))
     },
     clearAuthErrors: () => {

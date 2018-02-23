@@ -9,17 +9,19 @@ module.exports = function(passport) {
     secretOrKey: config.secret
   }
 
-  passport.use(new JwtStrategy(jwtOptions, (payload, done) => {
-    User.findOne({ id: payload.id }, (error, user) => {
-      if (error) {
-        return done(error)
-      }
+  passport.use(
+    new JwtStrategy(jwtOptions, (payload, done) => {
+      User.findOne({ id: payload.id }, (error, user) => {
+        if (error) {
+          return done(error)
+        }
 
-      if (user) {
-        return done(null, user)
-      } else {
-        return done(null, false)
-      }
+        if (user) {
+          return done(null, user)
+        } else {
+          return done(null, false)
+        }
+      })
     })
-  }))
+  )
 }

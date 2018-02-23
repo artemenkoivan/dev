@@ -6,8 +6,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Home from './views/Home/Home'
 import Login from './views/Login/Login'
-
-// Admin views
 import Admin from './views/Admin/Admin'
 import NewTag from './views/Admin/NewTag'
 import NewQuestion from './views/NewQuestion/NewQuestion'
@@ -23,15 +21,53 @@ class App extends Component {
       <Router>
         <div id="app">
           <Switch>
-            <Route path="/" exact component={ Home } />
-            <ProtectedRoute path="/admin" exact component={ Admin } canAccess={ !!accessLevel } redirect="/" />
-            <ProtectedRoute path="/admin/tag/new" component={ NewTag } canAccess={ !!accessLevel } redirect="/" />
-            <ProtectedRoute path="/login" component={ Login } canAccess={ !authenticated } redirect="/" />
-            <ProtectedRoute exact path="/question/new" component={ NewQuestion } canAccess={ authenticated } redirect="/" />
-            <Route path="/question/:id" exact component={ QuestionPage } redirect="/question/"/>
-            <ProtectedRoute exact path="/settings" component={UserSettings} redirect="/" canAccess={ authenticated } />
+            <Route path="/" exact component={Home} />
+            <ProtectedRoute
+              path="/admin"
+              exact
+              component={Admin}
+              canAccess={!!accessLevel}
+              redirect="/"
+            />
+            <ProtectedRoute
+              path="/admin/tag/new"
+              component={NewTag}
+              canAccess={!!accessLevel}
+              redirect="/"
+            />
+            <ProtectedRoute
+              path="/login"
+              component={Login}
+              canAccess={!authenticated}
+              redirect="/"
+            />
+            <ProtectedRoute
+              exact
+              path="/question/new"
+              component={NewQuestion}
+              canAccess={authenticated}
+              redirect="/"
+            />
+            <Route
+              path="/question/:id"
+              exact
+              component={QuestionPage}
+              redirect="/question/"
+            />
+            <ProtectedRoute
+              exact
+              path="/settings"
+              component={UserSettings}
+              redirect="/"
+              canAccess={authenticated}
+            />
             <Route path="/user/:name" exact component={Profile} />
-            <ProtectedRoute path="/admin/user/:name" component={ EditUser } canAccess={ !!accessLevel } redirect="/" />
+            <ProtectedRoute
+              path="/admin/user/:name"
+              component={EditUser}
+              canAccess={!!accessLevel}
+              redirect="/"
+            />
           </Switch>
         </div>
       </Router>
