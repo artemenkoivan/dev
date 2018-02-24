@@ -3,6 +3,7 @@ import {
   GET_ALL_USERS,
   PENDING_USERS,
   PENDING,
+  EDIT_USER,
   TAG_CREATE,
   GET_EDIT_USER
 } from '../helpers/consts'
@@ -23,6 +24,8 @@ function adminReducer(state = initialState, action) {
       return state.set('pending', true)
     case GET_EDIT_USER:
       return state.set('user', action.payload).set('pending', false)
+    case EDIT_USER:
+      return state.set('successfully', true)
     case TAG_CREATE:
       return state.set('successfully', true)
     case GET_ALL_USERS:

@@ -74,3 +74,44 @@ exports.getUser = function(req, res, next) {
     })
   })
 }
+
+exports.editUser = function(req, res, next) {
+  const id = req.get('userId')
+  const form = req.body
+
+  User.findOne({ _id: id }).then(user => {
+    if (!user) {
+      return res.json({
+        status: 404,
+        message: 'Пользователь не найден'
+      })
+    }
+
+    if (user.accessLevel === 0 || user.accessLevel === undefined) {
+      return res.json({
+        status: 403,
+        message: 'Доступ запрещен'
+      })
+    }
+
+    User.findOne({ _id: form._id }).then(editableUser => {
+      if (!editableUser) {
+        return res.json({
+          status: 404,
+          message: 'Пользователь не найден'
+        })
+      }
+
+      editableUser.userName = form.userName
+      editableUser.email = form.email
+      editableUser.description = form.description
+      editableUser.accessLevel = form.accessLevel
+      editableUser.save()
+
+      res.json({
+        status: 200,
+        message: 'Пользователь изменен!'
+      })
+    })
+  })
+}

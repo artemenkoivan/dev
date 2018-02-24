@@ -5,6 +5,7 @@ import {
   PENDING_USERS,
   GET_EDIT_USER,
   PENDING,
+  EDIT_USER,
   API_BASE,
   CONFIG
 } from '../helpers/consts'
@@ -62,5 +63,15 @@ export function createTag(data) {
     dispatch({
       type: TAG_CREATE
     })
+  }
+}
+
+export function editUser(form) {
+  return async function(dispatch) {
+    let response = await axios.post(`${API_BASE}/admin/user/edit`, form, CONFIG)
+
+    if (response.status === 200) {
+      dispatch({ type: EDIT_USER })
+    }
   }
 }

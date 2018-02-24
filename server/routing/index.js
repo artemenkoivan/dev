@@ -40,6 +40,7 @@ router.get('/tag/:tagName', tag.getOne)
 router.get('/admin/users', authenticate, admin.allUsers)
 router.get('/admin/user/:name', authenticate, admin.getUser)
 router.post('/admin/tag', authenticate, tag.create)
+router.post('/admin/user/edit', authenticate, admin.editUser)
 
 // Question routes
 router.post('/question', authenticate, question.create)
