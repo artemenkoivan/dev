@@ -615,3 +615,12 @@ a {
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat; }
+
+#editUserPage .editUser-form {
+  padding: 20px;
+  border-radius: 2px;
+  border: 1px solid #EFF2F7; }
+  #editUserPage .editUser-form .el-form-item {
+    max-width: 250px; }
+  #editUserPage .editUser-form__radio {
+    display: flex; }

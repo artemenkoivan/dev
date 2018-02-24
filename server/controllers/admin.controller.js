@@ -46,3 +46,31 @@ exports.allUsers = function(req, res, next) {
       next(message)
     })
 }
+
+exports.getUser = function(req, res, next) {
+  const id = req.get('userId')
+  const name = req.params.name
+
+  User.findOne({ _id: id }).then(user => {
+    if (!user) {
+      return res.json({
+        status: 404,
+        message: 'Пользователь не найден'
+      })
+    }
+
+    if (user.accessLevel === 0) {
+      return res.json({
+        status: 403,
+        message: 'Доступ запрещен'
+      })
+    }
+
+    User.findOne({ userName: name }).then(foundUser => {
+      res.json({
+        status: 200,
+        user: foundUser
+      })
+    })
+  })
+}

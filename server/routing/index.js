@@ -38,6 +38,7 @@ router.get('/tag/:tagName', tag.getOne)
 
 // Admin routes
 router.get('/admin/users', authenticate, admin.allUsers)
+router.get('/admin/user/:name', authenticate, admin.getUser)
 router.post('/admin/tag', authenticate, tag.create)
 
 // Question routes

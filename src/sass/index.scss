@@ -1,26 +1,27 @@
 // Variables
-@import "assets/vars";
+@import 'assets/vars';
 
 // Root
-@import "root/root";
-@import "root/reset";
+@import 'root/root';
+@import 'root/reset';
 
 // Assets
-@import "assets/box";
-@import "assets/mixins";
+@import 'assets/box';
+@import 'assets/mixins';
 
 // Components
-@import "components/header";
-@import "components/search";
-@import "components/editor";
-@import "components/questionListItem";
+@import 'components/header';
+@import 'components/search';
+@import 'components/editor';
+@import 'components/questionListItem';
 
 // Views
-@import "views/loginpage/index";
-@import "views/adminpage/index";
-@import "views/newtagpage/index";
-@import "views/homepage/index";
-@import "views/newquestion/index";
-@import "views/questionpage/index";
-@import "views/profile/index";
-@import "views/settings/index";
+@import 'views/loginpage/index';
+@import 'views/adminpage/index';
+@import 'views/newtagpage/index';
+@import 'views/homepage/index';
+@import 'views/newquestion/index';
+@import 'views/questionpage/index';
+@import 'views/profile/index';
+@import 'views/settings/index';
+@import 'views/edituserpage/index';

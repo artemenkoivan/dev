@@ -3,6 +3,8 @@ import {
   GET_ALL_USERS,
   TAG_CREATE,
   PENDING_USERS,
+  GET_EDIT_USER,
+  PENDING,
   API_BASE,
   CONFIG
 } from '../helpers/consts'
@@ -23,6 +25,19 @@ export function getAllUsers() {
         payload: users.data.data
       })
     }, 1000)
+  }
+}
+
+export function getUser(name) {
+  return async function(dispatch) {
+    dispatch({ type: PENDING })
+
+    let user = await axios.get(`${API_BASE}/admin/user/${name}`, CONFIG)
+
+    dispatch({
+      type: GET_EDIT_USER,
+      payload: user.data.user
+    })
   }
 }
 

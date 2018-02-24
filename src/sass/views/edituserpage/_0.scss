@@ -1,0 +1,15 @@
+#editUserPage {
+  .editUser-form {
+    padding: 20px;
+    border-radius: 2px;
+    border: 1px solid $extra-light-gray;
+
+    .el-form-item {
+      max-width: 250px;
+    }
+
+    &__radio {
+      display: flex;
+    }
+  }
+}

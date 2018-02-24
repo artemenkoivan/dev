@@ -38,5 +38,7 @@ export const CONFIG = {
 
 // Admin consts
 export const GET_ALL_USERS = 'GET_ALL_USERS'
+export const GET_EDIT_USER = 'GET_EDIT_USER'
 export const PENDING_USERS = 'PENDING_USERS'
 export const PENDING_TAGS = 'PENDING_TAGS'
+export const PENDING = 'PENDING'
