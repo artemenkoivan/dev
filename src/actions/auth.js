@@ -10,6 +10,7 @@ import {
   CLEAR_AUTH_ERRORS,
   API_BASE
 } from '../helpers/consts'
+import { removeCookies } from '../helpers/cookies'
 
 const ACTION_DELAY = 1500
 
@@ -100,7 +101,7 @@ export function logout() {
   return function(dispatch) {
     localStorage.removeItem('_id')
     localStorage.removeItem('access_token')
-    document.cookie = 'al='
+    removeCookies()
 
     dispatch({
       type: LOGOUT

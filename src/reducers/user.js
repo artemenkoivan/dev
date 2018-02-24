@@ -4,9 +4,9 @@ import {
   GET_PROFILE,
   EDIT_PROFILE_SUCCESS
 } from '../helpers/consts'
+import { getCookie } from '../helpers/cookies'
 
-const al = document.cookie.split(' ')
-const access = al.includes('al=1')
+const access = getCookie('al')
 
 const initialState = new Map({
   userName: '',
@@ -16,7 +16,7 @@ const initialState = new Map({
   description: '',
   noAvatar:
     'https://forum.mikrotik.com/styles/canvas/theme/images/no_avatar.jpg',
-  accessLevel: access ? 1 : 0,
+  accessLevel: access == 1 ? 1 : 0,
   profile: {},
   message: '',
   success: false
@@ -28,7 +28,7 @@ function userReducer(state = initialState, action) {
       return state
         .set('userName', action.payload.userName)
         .set('email', action.payload.email)
-        .set('accessLevel', action.payload.accessLevel)
+        .set('accessLevel', parseInt(action.payload.accessLevel))
         .set('avatar', action.payload.avatar)
         .set('description', action.payload.description)
         .set('createdAt', action.payload.createdAt)

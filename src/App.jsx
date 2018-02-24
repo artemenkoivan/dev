@@ -17,6 +17,7 @@ import EditUser from './views/Admin/EditUser'
 class App extends Component {
   render() {
     const { authenticated, accessLevel } = this.props
+
     return (
       <Router>
         <div id="app">
@@ -48,6 +49,12 @@ class App extends Component {
               canAccess={authenticated}
               redirect="/"
             />
+            <ProtectedRoute
+              path="/admin/user/:name"
+              component={EditUser}
+              canAccess={!!accessLevel}
+              redirect="/"
+            />
             <Route
               path="/question/:id"
               exact
@@ -62,12 +69,6 @@ class App extends Component {
               canAccess={authenticated}
             />
             <Route path="/user/:name" exact component={Profile} />
-            <ProtectedRoute
-              path="/admin/user/:name"
-              component={EditUser}
-              canAccess={!!accessLevel}
-              redirect="/"
-            />
           </Switch>
         </div>
       </Router>

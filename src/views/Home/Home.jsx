@@ -131,7 +131,7 @@ class Home extends Component {
                           return (
                             <Tooltip
                               key={index}
-                              content={el.title}
+                              content={`${el.title}, ${el.questions.length}`}
                               placement="top"
                             >
                               <li className="popular-tags__list__item col-xs-4 col-sm-4 col-md-3">

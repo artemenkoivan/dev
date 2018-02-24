@@ -8,6 +8,7 @@ import {
   EDIT_PROFILE_ERROR,
   EDIT_PROFILE_SUCCESS
 } from '../helpers/consts'
+import { getCookie } from '../helpers/cookies'
 
 export function getUserInfo(id) {
   return async function(dispatch) {
@@ -15,7 +16,9 @@ export function getUserInfo(id) {
 
     if (user.status === 200) {
       if (user.data.user.accessLevel > 0) {
-        document.cookie = 'al=' + user.data.user.accessLevel
+        if (!!getCookie('al') === false) {
+          document.cookie = 'al=' + parseInt(user.data.user.accessLevel)
+        }
       }
 
       setTimeout(() => {

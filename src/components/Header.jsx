@@ -28,7 +28,7 @@ class Header extends Component {
                   logout && (
                     <NavBar
                       userName={userName}
-                      accessLevel={accessLevel}
+                      accessLevel={!!accessLevel}
                       logout={logout}
                     />
                   )}
@@ -82,7 +82,7 @@ Header.propTypes = {
   userName: propTypes.string.isRequired,
   email: propTypes.string.isRequired,
   logout: propTypes.func.isRequired,
-  accessLevel: propTypes.oneOfType([propTypes.bool, propTypes.number])
+  accessLevel: propTypes.any
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)
