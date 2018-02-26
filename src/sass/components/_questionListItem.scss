@@ -15,9 +15,7 @@
       margin-top: 25px;
     }
 
-
     &__tags {
-
       .question-tag {
         margin-right: 10px;
         color: $black;
@@ -39,7 +37,6 @@
 }
 
 .questions-details {
-
   &__solved {
     color: #13ce66;
   }
@@ -47,7 +44,7 @@
   &__title {
     color: $black;
     flex: 9;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 
     &:hover {
       color: $blue;

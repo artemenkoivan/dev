@@ -1,11 +1,11 @@
 .search-box {
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
   .search {
     padding: 5px;
     border: none;
     border-radius: 0;
-    box-shadow: 0 0 6px 0 rgba(0,0,0,.04), 0 2px 4px 0 rgba(0,0,0, .12);
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.04), 0 2px 4px 0 rgba(0, 0, 0, 0.12);
     background-color: white;
 
     input {
@@ -18,7 +18,7 @@
     align-items: center;
     height: 36px;
     color: $light-black;
-    
+
     &:active,
     &:focus,
     &:visited {
@@ -49,7 +49,6 @@
     width: 100%;
 
     .el-autocomplete-suggestion__wrap {
-
       li:hover,
       .highlighted {
         color: $black;

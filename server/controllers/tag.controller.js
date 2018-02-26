@@ -151,8 +151,8 @@ exports.follow = function(req, res, next) {
         })
       }
 
-      for (let i = 0; i < tag.subscribers.length; i++) {
-        if (JSON.stringify(tag.subscribers[i]) === JSON.stringify(user._id)) {
+      for (let id of tag.subscribers) {
+        if (JSON.stringify(id) === JSON.stringify(user._id)) {
           tag.subscribers.pull(user._id)
           user.tags.pull(tag._id)
           tag.save()
@@ -160,7 +160,7 @@ exports.follow = function(req, res, next) {
 
           return res.json({
             status: 200,
-            message: 'UNSUBSCRIBED'
+            message: 'Вы успешно отписались'
           })
         }
       }
@@ -173,8 +173,7 @@ exports.follow = function(req, res, next) {
 
       return res.json({
         status: 200,
-        user,
-        tag
+        message: 'Вы успешно подписались'
       })
     })
   })

@@ -5,7 +5,7 @@ body {
   -webkit-text-size-adjust: 100%; }
 
 pre {
-  background-color: #F9FAFC !important;
+  background-color: #f9fafc !important;
   line-height: 1.5em;
   font-size: 90% !important;
   border-radius: 2px; }
@@ -23,7 +23,7 @@ pre {
   padding: 0 15px !important; }
 
 .el-card__header {
-  border-bottom: 1px solid #EFF2F7; }
+  border-bottom: 1px solid #eff2f7; }
 
 .el-button,
 .el-tag,
@@ -50,9 +50,9 @@ pre {
   margin-top: 75px !important; }
   .page-title {
     padding-bottom: 10px;
-    border-bottom: 1px solid #EFF2F7; }
+    border-bottom: 1px solid #eff2f7; }
     .page-title > a {
-      color: #20A0FF; }
+      color: #20a0ff; }
 
 blockquote {
   font-size: 15px;
@@ -60,14 +60,14 @@ blockquote {
   padding-left: 1.5em;
   margin: 5px 0;
   font-weight: 300;
-  border-left: 2px solid #20A0FF; }
+  border-left: 2px solid #20a0ff; }
 
 .title {
   margin: 0;
   padding: 0;
   font-weight: bolder; }
   .title--gray {
-    color: #8492A6; }
+    color: #8492a6; }
   .title--lg {
     font-size: 36px; }
   .title--md {
@@ -84,9 +84,9 @@ blockquote {
   .text--bold {
     font-weight: bolder; }
   .text--gray {
-    color: #8492A6; }
+    color: #8492a6; }
   .text--black {
-    color: #1F2D3D; }
+    color: #1f2d3d; }
   .text--center {
     text-align: center !important; }
   .text--link {
@@ -138,15 +138,15 @@ a {
   z-index: 999;
   height: 50px;
   width: 100%;
-  background-color: #F9FAFC;
-  border-bottom: 1px solid #EFF2F7; }
+  background-color: #f9fafc;
+  border-bottom: 1px solid #eff2f7; }
   .main-header .box {
     height: 50px; }
   .main-header__navbar {
     margin-right: 25px;
-    background-color: #F9FAFC; }
+    background-color: #f9fafc; }
     .main-header__navbar .sub-sub-menu {
-      border-top: 1px solid #EFF2F7; }
+      border-top: 1px solid #eff2f7; }
     .main-header__navbar .el-menu-item,
     .main-header__navbar .el-submenu {
       display: flex;
@@ -162,7 +162,7 @@ a {
     .main-header__navbar .el-submenu .el-menu {
       padding: 5px; }
     .main-header__navbar .el-submenu > .el-menu > li:hover {
-      background-color: #EFF2F7; }
+      background-color: #eff2f7; }
     .main-header__navbar .el-submenu__title {
       height: 50px !important;
       line-height: 47px !important; }
@@ -176,12 +176,12 @@ a {
     display: block; }
     .main-header__logo img {
       width: 60px;
-      transition: transform .2s ease-in-out; }
+      transition: transform 0.2s ease-in-out; }
     .main-header__logo:hover img {
       transform: scale(1.2); }
 
 .search-box {
-  transition: all .2s ease-in-out; }
+  transition: all 0.2s ease-in-out; }
   .search-box .search {
     padding: 5px;
     border: none;
@@ -212,8 +212,8 @@ a {
     width: 100%; }
     .search-box .el-autocomplete .el-autocomplete-suggestion__wrap li:hover,
     .search-box .el-autocomplete .el-autocomplete-suggestion__wrap .highlighted {
-      color: #1F2D3D;
-      background-color: #EFF2F7; }
+      color: #1f2d3d;
+      background-color: #eff2f7; }
 
 .editor__title-input {
   margin: 10px 0; }
@@ -238,8 +238,8 @@ a {
     font-size: 12px;
     border-radius: 2px;
     align-items: center;
-    background-color: #F9FAFC;
-    border: 1px solid #EFF2F7; }
+    background-color: #f9fafc;
+    border: 1px solid #eff2f7; }
 
 .editor .title--sm {
   margin: 0;
@@ -258,15 +258,15 @@ a {
   .questions-feed > .title {
     padding-bottom: 15px;
     margin-bottom: 25px;
-    border-bottom: 1px solid #EFF2F7; }
+    border-bottom: 1px solid #eff2f7; }
   .questions-feed__item {
     padding: 20px 0;
-    border-bottom: 1px solid #EFF2F7; }
+    border-bottom: 1px solid #eff2f7; }
     .questions-feed__item:first-child {
       margin-top: 25px; }
     .questions-feed__item__tags .question-tag {
       margin-right: 10px;
-      color: #1F2D3D;
+      color: #1f2d3d;
       font-weight: bolder; }
       .questions-feed__item__tags .question-tag:hover {
         text-decoration: underline; }
@@ -280,11 +280,11 @@ a {
   color: #13ce66; }
 
 .questions-details__title {
-  color: #1F2D3D;
+  color: #1f2d3d;
   flex: 9;
-  transition: all .3s ease-in-out; }
+  transition: all 0.3s ease-in-out; }
   .questions-details__title:hover {
-    color: #20A0FF; }
+    color: #20a0ff; }
 
 .questions-details__answers {
   flex: 1;
@@ -319,7 +319,7 @@ a {
       text-align: center; }
       .login-form-container .login-form p a,
       .login-form-container .register-form p a {
-        color: #20A0FF; }
+        color: #20a0ff; }
     .login-form-container .login-form .el-button,
     .login-form-container .register-form .el-button {
       width: 100%;
@@ -386,12 +386,12 @@ a {
   color: white;
   margin: 0 5px 0 0;
   padding: 2px 9px;
-  background-color: #58B7FF;
+  background-color: #58b7ff;
   border-radius: 2px; }
 
 #newtagpage .tag-upload {
   padding-bottom: 20px;
-  border-bottom: 1px solid #EFF2F7; }
+  border-bottom: 1px solid #eff2f7; }
   #newtagpage .tag-upload__preview {
     border-radius: 2px;
     width: 150px;
@@ -402,7 +402,7 @@ a {
 #newtagpage .admin-form {
   padding: 20px 20px 0 20px;
   border-radius: 2px;
-  border: 1px solid #EFF2F7; }
+  border: 1px solid #eff2f7; }
   #newtagpage .admin-form .tag-name {
     width: 200px; }
   #newtagpage .admin-form textarea {
@@ -445,7 +445,7 @@ a {
 #newquestionpage .title {
   padding-bottom: 15px;
   margin-bottom: 25px;
-  border-bottom: 1px solid #EFF2F7; }
+  border-bottom: 1px solid #eff2f7; }
 
 #questionpage .question-title {
   margin-bottom: 10px;
@@ -458,7 +458,7 @@ a {
 
 #questionpage .question-author {
   position: relative;
-  border-bottom: 1px solid #EFF2F7;
+  border-bottom: 1px solid #eff2f7;
   margin-bottom: 20px;
   padding-bottom: 10px; }
   #questionpage .question-author__avatar {
@@ -469,7 +469,7 @@ a {
   #questionpage .question-author__name {
     margin-left: 25px; }
   #questionpage .question-author a {
-    color: #1F2D3D;
+    color: #1f2d3d;
     margin-right: 5px; }
     #questionpage .question-author a:hover {
       text-decoration: underline; }
@@ -485,8 +485,8 @@ a {
     font-size: 12px;
     border-radius: 2px;
     align-items: center;
-    background-color: #F9FAFC;
-    border: 1px solid #EFF2F7; }
+    background-color: #f9fafc;
+    border: 1px solid #eff2f7; }
     #questionpage .selected-tags__item span {
       margin: 1px 0 0 5px; }
     #questionpage .selected-tags__item img {
@@ -496,13 +496,13 @@ a {
 #questionpage .new-comment {
   margin: 20px 0 20px 0; }
   #questionpage .new-comment .title {
-    border-bottom: 1px solid #EFF2F7;
+    border-bottom: 1px solid #eff2f7;
     padding-bottom: 15px; }
   #questionpage .new-comment__submit {
     margin-top: 10px; }
 
 #questionpage .answers-container .title {
-  border-bottom: 1px solid #EFF2F7;
+  border-bottom: 1px solid #eff2f7;
   padding: 15px 0;
   margin: 15px 0; }
 
@@ -513,7 +513,7 @@ a {
   display: block;
   margin: 20px 0;
   padding: 20px 0;
-  border-bottom: 1px solid #EFF2F7; }
+  border-bottom: 1px solid #eff2f7; }
   #questionpage .question-answers__item .text--link {
     display: block;
     widows: 100px; }
@@ -523,7 +523,7 @@ a {
     align-items: center;
     margin-top: 20px; }
     #questionpage .question-answers__item .answer-footer .answer-comments-link {
-      color: #8492A6; }
+      color: #8492a6; }
       #questionpage .question-answers__item .answer-footer .answer-comments-link:hover > span {
         border-bottom: 1px dotted; }
 
@@ -543,9 +543,9 @@ a {
     margin-top: 15px;
     width: 100%; }
     .user-profile__activity__amount {
-      color: #1F2D3D; }
+      color: #1f2d3d; }
     .user-profile__activity .text {
-      color: #8492A6;
+      color: #8492a6;
       cursor: default; }
     .user-profile__activity > .item {
       display: flex;
@@ -555,9 +555,9 @@ a {
       padding: 0 10px;
       min-width: 100px; }
       .user-profile__activity > .item:hover {
-        background-color: #EFF2F7; }
+        background-color: #eff2f7; }
       .user-profile__activity > .item:not(:first-child) {
-        border-left: 1px solid #EFF2F7; }
+        border-left: 1px solid #eff2f7; }
   .user-profile__front__name {
     margin-top: 15px; }
   .user-profile__front__avatar {
@@ -571,15 +571,15 @@ a {
   .user-profile .user-questions__title {
     margin-top: 50px;
     padding-bottom: 5px;
-    border-bottom: 1px solid #EFF2F7; }
+    border-bottom: 1px solid #eff2f7; }
   .user-profile .user-questions .questions-feed__item {
     padding: 20px 0;
-    border-bottom: 1px solid #EFF2F7; }
+    border-bottom: 1px solid #eff2f7; }
     .user-profile .user-questions .questions-feed__item:first-child {
       margin-top: 25px; }
     .user-profile .user-questions .questions-feed__item__tags .question-tag {
       margin-right: 10px;
-      color: #1F2D3D;
+      color: #1f2d3d;
       font-weight: bolder; }
       .user-profile .user-questions .questions-feed__item__tags .question-tag:hover {
         text-decoration: underline; }
@@ -593,26 +593,26 @@ a {
     .user-profile .profile-answer-item:first-child {
       margin-top: 20px; }
     .user-profile .profile-answer-item:not(:first-child) {
-      border-top: 1px solid #EFF2F7; }
+      border-top: 1px solid #eff2f7; }
     .user-profile .profile-answer-item__solved {
-      color: #13CE66; }
+      color: #13ce66; }
 
 #settingsPage .settings-form {
   padding: 20px;
   border-radius: 2px;
-  border: 1px solid #EFF2F7; }
+  border: 1px solid #eff2f7; }
   #settingsPage .settings-form__additional {
     margin-bottom: 20px; }
   #settingsPage .settings-form .el-form-item {
     max-width: 280px; }
   #settingsPage .settings-form .avatar-upload {
     padding-bottom: 20px;
-    border-bottom: 1px solid #EFF2F7; }
+    border-bottom: 1px solid #eff2f7; }
     #settingsPage .settings-form .avatar-upload__preview {
       display: block;
       border-radius: 2px;
       width: 150px;
-      border: 1px solid #EFF2F7;
+      border: 1px solid #eff2f7;
       height: 150px;
       background-size: cover;
       background-position: center;
@@ -621,7 +621,7 @@ a {
 #editUserPage .editUser-form {
   padding: 20px;
   border-radius: 2px;
-  border: 1px solid #EFF2F7; }
+  border: 1px solid #eff2f7; }
   #editUserPage .editUser-form .el-form-item {
     max-width: 250px; }
   #editUserPage .editUser-form__radio {
