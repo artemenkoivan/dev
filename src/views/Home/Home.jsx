@@ -91,7 +91,7 @@ class Home extends Component {
 
                     <div className="row-fluid">
                       <div className="questions-feed">
-                        <h3 className="title title--md">Лента вопросов</h3>
+                        <h3 className="title title--md">Все вопросы</h3>
                         {questions.map((question, index) => {
                           return (
                             <QuestionListItem

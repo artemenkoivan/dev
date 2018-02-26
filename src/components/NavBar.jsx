@@ -9,7 +9,7 @@ class NavBar extends Component {
     return (
       <Menu mode="horizontal" className="main-header__navbar">
         <Menu.Item index="1">
-          <Link to="/feed/my">Моя лента</Link>
+          <Link to="/feed">Моя лента</Link>
         </Menu.Item>
         <Menu.SubMenu index="2" title={userName}>
           <Menu.Item index="2-1">
