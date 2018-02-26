@@ -87,7 +87,9 @@ class Profile extends Component {
                         {profile.userName}
                       </h3>
                       {profile.description && (
-                        <p className="text--muted">{profile.description}</p>
+                        <p className="text user-profile__front__description">
+                          {profile.description}
+                        </p>
                       )}
                     </div>
                   </div>

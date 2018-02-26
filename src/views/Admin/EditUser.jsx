@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import DocumentTitle from 'react-document-title'
 import propTypes from 'prop-types'
+import { isEmpty } from 'lodash'
 import { Loading, Form, Input, Radio, Button, Message } from 'element-react'
 import { getUser, editUser } from '../../actions/admin'
-import { isEmpty } from 'lodash'
 import Header from '../../components/Header'
 
 class EditUser extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
 
     this.state = {
       form: {

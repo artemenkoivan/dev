@@ -1,5 +1,6 @@
 const Tag = require('../models/Tag')
 const User = require('../models/User')
+const Question = require('../models/Question')
 const multer = require('multer')
 
 const storage = multer.diskStorage({
@@ -104,6 +105,7 @@ exports.getOne = function(req, res, next) {
   const name = req.params.tagName
 
   Tag.find({ title: { $regex: name, $options: 'i' } })
+    .populate('questions')
     .then(tags => {
       let data = []
 
@@ -116,7 +118,8 @@ exports.getOne = function(req, res, next) {
       tags.forEach(item => {
         data.push({
           value: item.title,
-          _id: item.id
+          _id: item.id,
+          data: item
         })
       })
 
@@ -127,4 +130,52 @@ exports.getOne = function(req, res, next) {
     .catch(({ message }) => {
       next(message)
     })
+}
+
+exports.follow = function(req, res, next) {
+  const { tagId, userId } = req.body
+
+  Tag.findOne({ _id: tagId }).then(tag => {
+    if (!tag) {
+      return res.json({
+        status: 404,
+        message: 'Тег не найден!'
+      })
+    }
+
+    User.findOne({ _id: userId }).then(user => {
+      if (!user) {
+        return res.json({
+          status: 404,
+          message: 'Пользователь не найден!'
+        })
+      }
+
+      for (let i = 0; i < tag.subscribers.length; i++) {
+        if (JSON.stringify(tag.subscribers[i]) === JSON.stringify(user._id)) {
+          tag.subscribers.pull(user._id)
+          user.tags.pull(tag._id)
+          tag.save()
+          user.save()
+
+          return res.json({
+            status: 200,
+            message: 'UNSUBSCRIBED'
+          })
+        }
+      }
+
+      tag.subscribers.push(user)
+      tag.save()
+
+      user.tags.push(tag)
+      user.save()
+
+      return res.json({
+        status: 200,
+        user,
+        tag
+      })
+    })
+  })
 }

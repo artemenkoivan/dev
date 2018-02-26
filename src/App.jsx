@@ -13,6 +13,7 @@ import QuestionPage from './views/QuestionPage/QuestionPage'
 import Profile from './views/Profile/Profile'
 import UserSettings from './views/UserSettings/UserSettings'
 import EditUser from './views/Admin/EditUser'
+import Tag from './views/Tag/Tag'
 
 class App extends Component {
   render() {
@@ -69,6 +70,7 @@ class App extends Component {
               canAccess={authenticated}
             />
             <Route path="/user/:name" exact component={Profile} />
+            <Route path="/tag/:name" exact component={Tag} />
           </Switch>
         </div>
       </Router>

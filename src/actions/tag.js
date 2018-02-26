@@ -1,5 +1,11 @@
 import axios from 'axios'
-import { TAG_GET_ALL, API_BASE, TAG_GET, PENDING_TAGS } from '../helpers/consts'
+import {
+  TAG_GET_ALL,
+  API_BASE,
+  TAG_GET,
+  PENDING_TAGS,
+  CONFIG
+} from '../helpers/consts'
 
 export function getAllTags() {
   return async function(dispatch) {
@@ -26,5 +32,17 @@ export function getTag(name) {
       type: TAG_GET,
       payload: tag.data.data
     })
+  }
+}
+
+export function follow(id) {
+  return async function(dispatch) {
+    let data = {
+      tagId: id,
+      userId: localStorage.getItem('_id')
+    }
+    let followTag = await axios.post(`${API_BASE}/tag/follow`, data, CONFIG)
+
+    console.log(followTag)
   }
 }

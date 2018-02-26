@@ -57,7 +57,7 @@ class QuestionPage extends Component {
 
   submitAnswer = e => {
     e.preventDefault()
-    const { singleQuestion, addAnswer, userName } = this.props
+    const { singleQuestion, getOneQuestion, addAnswer, userName } = this.props
 
     const answer = {
       body: this.refs.textarea.refs.textarea.value,
@@ -67,6 +67,7 @@ class QuestionPage extends Component {
     }
 
     addAnswer(answer)
+    getOneQuestion(singleQuestion.questionId)
   }
 
   render() {
@@ -282,14 +283,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionPage)
-
-const object = {
-  page1: {
-    title: 'title',
-    body: 'body blblbllblbl',
-    subbody: {
-      title: 'safsaf',
-      body: 'blalbllalbla'
-    }
-  }
-}

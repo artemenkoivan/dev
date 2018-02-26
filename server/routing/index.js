@@ -35,6 +35,7 @@ router.post('/profile/edit-avatar', authenticate, user.editProfileAvatar)
 // Tag routes
 router.get('/tags', tag.getAll)
 router.get('/tag/:tagName', tag.getOne)
+router.post('/tag/follow', authenticate, tag.follow)
 
 // Admin routes
 router.get('/admin/users', authenticate, admin.allUsers)

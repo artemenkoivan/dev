@@ -12,7 +12,7 @@ const TagSchema = new Schema({
     required: true
   },
   cover: String,
-  questions: [{ type: Schema.Types.ObjectId, ref: 'Post' }],
+  questions: [{ type: Schema.Types.ObjectId, ref: 'Question' }],
   subscribers: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 })
 

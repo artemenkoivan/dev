@@ -19,11 +19,6 @@ exports.create = function(req, res, next) {
 
       tags.forEach(el => {
         data.push(el)
-
-        Tag.findOne({ _id: el._id }).then(tag => {
-          tag.questions.push(el._id)
-          tag.save()
-        })
       })
 
       let question = new Question({
@@ -40,6 +35,13 @@ exports.create = function(req, res, next) {
             message: 'Произошла ошибка при сохранении вопроса!'
           })
         }
+      })
+
+      tags.forEach(el => {
+        Tag.findOne({ _id: el._id }).then(tag => {
+          tag.questions.push(question)
+          tag.save()
+        })
       })
 
       user.questions.push(question)

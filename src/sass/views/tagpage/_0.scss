@@ -1,0 +1,26 @@
+#tagPage {
+  .tag-header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    &__cover {
+      margin-top: 25px;
+
+      img {
+        display: block;
+        width: 70px;
+        height: 70px;
+        border-radius: 2px;
+      }
+    }
+
+    &__title {
+      margin-top: 15px;
+    }
+
+    &__description {
+      margin: 10px 0;
+    }
+  }
+}
