@@ -62,6 +62,12 @@ pre {
   }
 }
 
+@media only screen and (min-width: 75em) {
+  .container {
+    width: 60em !important;
+  }
+}
+
 // Default styles for page content
 .page {
   margin-top: 75px !important;

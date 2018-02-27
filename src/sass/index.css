@@ -46,6 +46,10 @@ pre {
     width: 85%;
     margin: 0 auto; } }
 
+@media only screen and (min-width: 75em) {
+  .container {
+    width: 60em !important; } }
+
 .page {
   margin-top: 75px !important; }
   .page-title {
@@ -402,7 +406,7 @@ a {
 #newtagpage .admin-form {
   padding: 20px 20px 0 20px;
   border-radius: 2px;
-  border: 1px solid #eff2f7; }
+  border: 1px solid #e5e9f2; }
   #newtagpage .admin-form .tag-name {
     width: 200px; }
   #newtagpage .admin-form textarea {
@@ -628,7 +632,7 @@ a {
 #settingsPage .settings-form {
   padding: 20px;
   border-radius: 2px;
-  border: 1px solid #eff2f7; }
+  border: 1px solid #e5e9f2; }
   #settingsPage .settings-form__additional {
     margin-bottom: 20px; }
   #settingsPage .settings-form .el-form-item {
@@ -649,7 +653,7 @@ a {
 #editUserPage .editUser-form {
   padding: 20px;
   border-radius: 2px;
-  border: 1px solid #eff2f7; }
+  border: 1px solid #e5e9f2; }
   #editUserPage .editUser-form .el-form-item {
     max-width: 250px; }
   #editUserPage .editUser-form__radio {
