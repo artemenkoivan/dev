@@ -34,7 +34,7 @@ exports.getProfile = function(req, res, next) {
   const name = req.params.name
 
   User.findOne({ userName: name })
-    .populate('questions answers')
+    .populate('questions answers tags')
     .then(user => {
       if (!user) {
         return res.status(404).json({
@@ -55,7 +55,8 @@ exports.getProfile = function(req, res, next) {
             avatar: user.avatar,
             createdAt: user.createdAt,
             questions,
-            answers: user.answers
+            answers: user.answers,
+            tags: user.tags
           }
         })
       }

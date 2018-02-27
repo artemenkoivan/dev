@@ -43,6 +43,6 @@ export function follow(id) {
     }
     let followTag = await axios.post(`${API_BASE}/tag/follow`, data, CONFIG)
 
-    console.log(followTag)
+    dispatch(getTag(followTag.data.title))
   }
 }

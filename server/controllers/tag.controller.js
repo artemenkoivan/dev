@@ -160,7 +160,8 @@ exports.follow = function(req, res, next) {
 
           return res.json({
             status: 200,
-            message: 'Вы успешно отписались'
+            message: 'Вы успешно отписались',
+            title: tag.title
           })
         }
       }
@@ -173,7 +174,8 @@ exports.follow = function(req, res, next) {
 
       return res.json({
         status: 200,
-        message: 'Вы успешно подписались'
+        message: 'Вы успешно подписались',
+        title: tag.title
       })
     })
   })
