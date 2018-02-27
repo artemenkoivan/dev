@@ -181,6 +181,35 @@ class Profile extends Component {
                         <p>Пользователь не решил ни одного вопроса</p>
                       )}
                     </Tabs.Pane>
+                    <Tabs.Pane
+                      name="4"
+                      label={
+                        <Link
+                          to="#"
+                          className="title title--xs user-profile__activity__amount"
+                        >
+                          <span>Теги</span>
+                        </Link>
+                      }
+                    >
+                      <ul className="user-profile__tags">
+                        {profile.tags.map((el, idx) => {
+                          return (
+                            <li key={idx} className="user-profile__tags__item">
+                              <Link to={`/tag/${el.title}`}>
+                                <img
+                                  src={require(`../../uploads/tags/${
+                                    el.cover
+                                  }`)}
+                                  alt="cover"
+                                />
+                                <p className="title title--xs">{el.title}</p>
+                              </Link>
+                            </li>
+                          )
+                        })}
+                      </ul>
+                    </Tabs.Pane>
                   </Tabs>
                 </div>
               </div>

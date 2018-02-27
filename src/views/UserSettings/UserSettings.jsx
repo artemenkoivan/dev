@@ -64,7 +64,7 @@ class UserSettings extends Component {
     this.setState(state => ({ form: { ...state.form, [key]: value } }))
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.getUserInfo(localStorage.getItem('_id'))
   }
 

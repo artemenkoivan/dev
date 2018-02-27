@@ -57,7 +57,7 @@ class NewTag extends Component {
     this.props.createTag(data)
 
     Message.success('Тег создан')
-    setTimeout(() => this.props.history.push('/admin'), 200)
+    setTimeout(() => window.location.reload(), 200)
   }
 
   handleImageChange = e => {

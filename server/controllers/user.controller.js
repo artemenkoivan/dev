@@ -46,19 +46,53 @@ exports.getProfile = function(req, res, next) {
       let counter = 0
 
       function whenDone(questions) {
-        res.status(200).json({
-          profile: {
-            userName: user.userName,
-            email: user.email,
-            _id: user._id,
-            description: user.description,
-            avatar: user.avatar,
-            createdAt: user.createdAt,
-            questions,
-            answers: user.answers,
-            tags: user.tags
-          }
-        })
+        let feed = []
+
+        if (!user.tags) {
+          return res.json({
+            status: 404,
+            message: 'Ничего не найдено, подпишитесь как минимум на 1 тег'
+          })
+        }
+
+        if (user.tags.length > 0) {
+          user.tags.forEach(tag => {
+            if (!tag.questions) {
+              return res.json({
+                status: 404,
+                message: 'Вопросов в теге не найдено'
+              })
+            }
+
+            if (tag.questions.length > 0) {
+              let counter = 0
+
+              tag.questions.forEach(questionId => {
+                counter++
+
+                Question.findOne({ _id: questionId }).then(questionItem => {
+                  feed.push(questionItem)
+                  if (counter === feed.length) {
+                    return res.status(200).json({
+                      profile: {
+                        userName: user.userName,
+                        email: user.email,
+                        _id: user._id,
+                        description: user.description,
+                        avatar: user.avatar,
+                        createdAt: user.createdAt,
+                        questions,
+                        answers: user.answers,
+                        tags: user.tags,
+                        feed
+                      }
+                    })
+                  }
+                })
+              })
+            }
+          })
+        }
       }
 
       if (user.questions.length > 0) {

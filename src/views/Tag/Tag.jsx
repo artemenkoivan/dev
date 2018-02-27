@@ -19,7 +19,7 @@ class Tag extends Component {
 
   render() {
     const {
-      props: { match: { params: { name } }, searchTag, follow },
+      props: { match: { params: { name } }, searchTag, follow, authenticated },
       state: {}
     } = this
     const currentTag = searchTag[0]
@@ -46,13 +46,15 @@ class Tag extends Component {
                   {currentTag.data.description}
                 </p>
 
-                <Button
-                  type="success"
-                  size="small"
-                  onClick={() => follow(currentTag._id)}
-                >
-                  Подписаться {currentTag.data.subscribers.length}
-                </Button>
+                {authenticated && (
+                  <Button
+                    type="success"
+                    size="small"
+                    onClick={() => follow(currentTag._id)}
+                  >
+                    Подписаться {currentTag.data.subscribers.length}
+                  </Button>
+                )}
               </div>
             </div>
           ) : (
@@ -66,7 +68,8 @@ class Tag extends Component {
 
 const mapStateToProps = state => {
   return {
-    searchTag: state.tag.get('searchTag')
+    searchTag: state.tag.get('searchTag'),
+    authenticated: state.auth.get('authenticated')
   }
 }
 
@@ -84,7 +87,8 @@ const mapDispatchToProps = dispatch => {
 Tag.propTypes = {
   searchTag: propTypes.array,
   getTag: propTypes.func,
-  follow: propTypes.func
+  follow: propTypes.func,
+  authenticated: propTypes.bool
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tag)

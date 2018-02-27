@@ -14,6 +14,7 @@ import Profile from './views/Profile/Profile'
 import UserSettings from './views/UserSettings/UserSettings'
 import EditUser from './views/Admin/EditUser'
 import Tag from './views/Tag/Tag'
+import Feed from './views/Feed/Feed'
 
 class App extends Component {
   render() {
@@ -66,6 +67,13 @@ class App extends Component {
               exact
               path="/settings"
               component={UserSettings}
+              redirect="/"
+              canAccess={authenticated}
+            />
+            <ProtectedRoute
+              exact
+              path="/feed"
+              component={Feed}
               redirect="/"
               canAccess={authenticated}
             />

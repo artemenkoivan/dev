@@ -29,20 +29,24 @@ class Admin extends Component {
         {
           label: 'Картинка',
           render: function(data) {
-            return (
-              <span>
+            const tagImage = require(`../../uploads/tags/${data.cover}`)
+
+            if (tagImage !== undefined) {
+              return (
                 <span>
-                  <img
-                    src={require(`../../uploads/tags/${data.cover}`)}
-                    alt="cover"
-                    style={{
-                      width: '25px',
-                      display: 'block'
-                    }}
-                  />
+                  <span>
+                    <img
+                      src={tagImage}
+                      alt="cover"
+                      style={{
+                        width: '25px',
+                        display: 'block'
+                      }}
+                    />
+                  </span>
                 </span>
-              </span>
-            )
+              )
+            }
           }
         },
         {
@@ -155,8 +159,8 @@ class Admin extends Component {
   }
 
   componentDidMount() {
-    this.props.getAllUsers()
     this.props.getAllTags()
+    this.props.getAllUsers()
   }
 
   render() {

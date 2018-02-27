@@ -539,6 +539,34 @@ a {
     display: block;
     margin: 20px 0;
     width: 100%; }
+  .user-profile__tags {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0;
+    flex-wrap: wrap;
+    padding: 0;
+    list-style-type: none; }
+    .user-profile__tags__item {
+      border-radius: 2px;
+      width: 100px;
+      margin: 5px;
+      border: 1px solid #eff2f7;
+      transition: all 0.3s ease-in-out; }
+      .user-profile__tags__item:hover {
+        background-color: #eff2f7;
+        border: 1px solid #e5e9f2; }
+      .user-profile__tags__item a {
+        margin: 10px;
+        display: flex;
+        color: #1f2d3d;
+        flex-direction: column;
+        align-items: center; }
+        .user-profile__tags__item a img {
+          width: 50px;
+          height: 50px;
+          border-radius: 3px; }
+        .user-profile__tags__item a .title {
+          margin-top: 10px; }
   .user-profile__activity {
     margin-top: 15px;
     width: 100%; }
