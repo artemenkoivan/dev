@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import DocumentTitle from 'react-document-title'
+import { Loading } from 'element-react'
 import Header from '../../components/Header'
+import FeedQuestionItem from '../../components/FeedQuestionItem'
 import { getProfile } from '../../actions/user'
 
 class Feed extends Component {
@@ -17,9 +19,38 @@ class Feed extends Component {
     console.log(profile)
     return (
       <DocumentTitle title="Моя лента">
-        <div className="page" id="feedPage">
-          <Header />
-        </div>
+        {profile.feed ? (
+          <div className="page" id="feedPage">
+            <Header />
+
+            <div className="container page">
+              <div className="row">
+                <div className="col-xs-12">
+                  <h2 className="page-title">Моя лента</h2>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-xs-12">
+                  <div className="my-feed">
+                    {profile.feed.map((element, index) => {
+                      return (
+                        <FeedQuestionItem
+                          question={element}
+                          index={index}
+                          isSolved={!!element.solved}
+                          key={index}
+                        />
+                      )
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <Loading fullscreen={true} text="Загружаем вопросы..." />
+        )}
       </DocumentTitle>
     )
   }

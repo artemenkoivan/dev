@@ -46,6 +46,7 @@ exports.getProfile = function(req, res, next) {
       let counter = 0
 
       function whenDone(questions) {
+        let counter = 0
         let feed = []
 
         if (!user.tags) {
@@ -65,30 +66,30 @@ exports.getProfile = function(req, res, next) {
             }
 
             if (tag.questions.length > 0) {
-              let counter = 0
-
               tag.questions.forEach(questionId => {
                 counter++
 
-                Question.findOne({ _id: questionId }).then(questionItem => {
-                  feed.push(questionItem)
-                  if (counter === feed.length) {
-                    return res.status(200).json({
-                      profile: {
-                        userName: user.userName,
-                        email: user.email,
-                        _id: user._id,
-                        description: user.description,
-                        avatar: user.avatar,
-                        createdAt: user.createdAt,
-                        questions,
-                        answers: user.answers,
-                        tags: user.tags,
-                        feed
-                      }
-                    })
-                  }
-                })
+                Question.findOne({ _id: questionId })
+                  .populate('tags')
+                  .then(questionItem => {
+                    feed.push(questionItem)
+                    if (counter === feed.length) {
+                      res.status(200).json({
+                        profile: {
+                          userName: user.userName,
+                          email: user.email,
+                          _id: user._id,
+                          description: user.description,
+                          avatar: user.avatar,
+                          createdAt: user.createdAt,
+                          questions,
+                          answers: user.answers,
+                          tags: user.tags,
+                          feed
+                        }
+                      })
+                    }
+                  })
               })
             }
           })
