@@ -5,6 +5,7 @@ import { Loading } from 'element-react'
 import Header from '../../components/Header'
 import FeedQuestionItem from '../../components/FeedQuestionItem'
 import { getProfile } from '../../actions/user'
+import propTypes from 'prop-types'
 
 class Feed extends Component {
   componentWillReceiveProps(nextProps) {
@@ -16,9 +17,8 @@ class Feed extends Component {
   render() {
     const { props: { userName, profile } } = this
 
-    console.log(profile)
     return (
-      <DocumentTitle title="Моя лента">
+      <DocumentTitle title="GeekAsks –– Моя лента">
         {profile.feed ? (
           <div className="page" id="feedPage">
             <Header />
@@ -69,6 +69,12 @@ const mapDisptachToProps = dispatch => {
       dispatch(getProfile(name))
     }
   }
+}
+
+Feed.propTypes = {
+  getProfile: propTypes.func,
+  profile: propTypes.object,
+  userName: propTypes.string
 }
 
 export default connect(mapStateToProps, mapDisptachToProps)(Feed)

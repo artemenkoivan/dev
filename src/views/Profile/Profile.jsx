@@ -56,13 +56,12 @@ class Profile extends Component {
       percent = 0
     }
 
-    console.log(profile)
     return (
       <DocumentTitle
         title={
           profile.userName
-            ? `GeekAsks | ${profile.userName}`
-            : `GeekAsks | Профиль...`
+            ? `GeekAsks –– ${profile.userName}`
+            : `GeekAsks –– Профиль...`
         }
       >
         <div id="profilepage" className="page">
