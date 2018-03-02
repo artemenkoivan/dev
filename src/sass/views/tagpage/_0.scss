@@ -23,4 +23,18 @@
       margin: 10px 0;
     }
   }
+
+  .tag-questions {
+    margin-top: 25px;
+
+    &__title {
+      padding-bottom: 10px;
+      border-bottom: 1px solid $extra-light-gray;
+    }
+
+    &__item {
+      padding: 15px 0;
+      border-bottom: 1px solid $light-gray;
+    }
+  }
 }

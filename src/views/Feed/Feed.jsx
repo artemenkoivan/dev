@@ -8,9 +8,13 @@ import { getProfile } from '../../actions/user'
 import propTypes from 'prop-types'
 
 class Feed extends Component {
-  componentWillReceiveProps(nextProps) {
-    if (this.props.userName !== nextProps.userName) {
-      nextProps.getProfile(nextProps.userName)
+  componentDidMount() {
+    this.props.getProfile(this.props.userName)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.userName !== this.props.userName) {
+      this.props.getProfile(this.props.userName)
     }
   }
 

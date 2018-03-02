@@ -674,3 +674,12 @@ a {
     margin-top: 15px; }
   #tagPage .tag-header__description {
     margin: 10px 0; }
+
+#tagPage .tag-questions {
+  margin-top: 25px; }
+  #tagPage .tag-questions__title {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eff2f7; }
+  #tagPage .tag-questions__item {
+    padding: 15px 0;
+    border-bottom: 1px solid #e5e9f2; }

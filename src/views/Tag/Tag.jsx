@@ -4,6 +4,7 @@ import DocumentTitle from 'react-document-title'
 import { connect } from 'react-redux'
 import { Loading, Button } from 'element-react'
 import Header from '../../components/Header'
+import TagQuestion from '../../components/TagQuestion'
 import { getTag, follow } from '../../actions/tag'
 
 class Tag extends Component {
@@ -55,6 +56,14 @@ class Tag extends Component {
                     Подписаться {currentTag.data.subscribers.length}
                   </Button>
                 )}
+              </div>
+              <div className="tag-questions">
+                <h3 className="title tag-questions__title title--xs">
+                  Вопросы ({currentTag.data.questions.length})
+                </h3>
+                {currentTag.data.questions.map((question, index) => {
+                  return <TagQuestion question={question} key={index} />
+                })}
               </div>
             </div>
           ) : (
