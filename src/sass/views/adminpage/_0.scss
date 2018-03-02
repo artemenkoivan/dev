@@ -1,7 +1,37 @@
 #adminpage {
   .recent-actions {
     .el-card__body {
-      padding: 20px 10px;
+      padding: 10px !important;
+    }
+
+    &__range-box {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin: 15px 0 0 0;
+      padding: 0;
+    }
+
+    &__range-value {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    &__range[type='range'] {
+      display: block;
+      -webkit-appearance: none !important;
+      background: $light-gray;
+      height: 7px;
+      outline: none;
+    }
+
+    &__range::-webkit-slider-thumb {
+      -webkit-appearance: none !important;
+      background: $blue;
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      border-radius: 2px;
     }
 
     &__title {
@@ -15,12 +45,17 @@
       width: 100%;
       display: flex;
       margin: 5px 0;
+      padding: 0 2px;
+      overflow-x: scroll;
+      color: $black;
       justify-content: flex-start;
       align-items: center;
+      border: 1px solid $light-gray;
+      background-color: white;
     }
 
     .text {
-      font-size: 10px;
+      font-size: 12px;
     }
   }
 

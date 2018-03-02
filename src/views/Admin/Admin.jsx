@@ -14,6 +14,7 @@ class Admin extends Component {
 
     this.state = {
       filteredUsers: [],
+      actionsRange: 5,
       tagColumns: [
         { type: 'index' },
         {
@@ -29,23 +30,25 @@ class Admin extends Component {
         {
           label: 'Картинка',
           render: function(data) {
-            const tagImage = require(`../../uploads/tags/${data.cover}`)
+            if (data.cover) {
+              const tagImage = require(`../../uploads/tags/${data.cover}`)
 
-            if (tagImage !== undefined) {
-              return (
-                <span>
+              if (tagImage !== undefined) {
+                return (
                   <span>
-                    <img
-                      src={tagImage}
-                      alt="cover"
-                      style={{
-                        width: '25px',
-                        display: 'block'
-                      }}
-                    />
+                    <span>
+                      <img
+                        src={tagImage}
+                        alt="cover"
+                        style={{
+                          width: '25px',
+                          display: 'block'
+                        }}
+                      />
+                    </span>
                   </span>
-                </span>
-              )
+                )
+              }
             }
           }
         },
@@ -163,10 +166,17 @@ class Admin extends Component {
     this.props.getAllUsers()
   }
 
+  setRange = value => {
+    console.log(value)
+
+    this.setState({ actionsRange: value })
+  }
+
   render() {
-    const { userColumns, tagColumns, filteredUsers } = this.state
+    const { userColumns, tagColumns, filteredUsers, actionsRange } = this.state
     const { users, tags, pendingUsers, pendingTags } = this.props
-    const { filteredItems } = this
+    const { filteredItems, setRange } = this
+    const latestActions = JSON.parse(localStorage.getItem('latestActions'))
 
     let usersData
 
@@ -247,15 +257,33 @@ class Admin extends Component {
                         <p className="recent-actions__title">
                           Недавние действия
                         </p>
+
+                        <p className="recent-actions__range-box">
+                          <span className="recent-actions__range-value">
+                            {actionsRange}/{latestActions.length}
+                          </span>
+                          <input
+                            type="range"
+                            className="recent-actions__range"
+                            step="1"
+                            min="1"
+                            max={latestActions.length}
+                            value={actionsRange}
+                            onChange={e => setRange(e.target.value)}
+                          />
+                        </p>
                       </div>
                     }
                   >
-                    <Tag type="danger" className="text item">
-                      Пользователь Test2 удален
-                    </Tag>
-                    <Tag type="success" className="text item">
-                      Добавлен тег JavaScript
-                    </Tag>
+                    {latestActions
+                      .slice(-actionsRange)
+                      .map((el, index, arr) => {
+                        return (
+                          <Tag className="text item" key={index}>
+                            {el.action}
+                          </Tag>
+                        )
+                      })}
                   </Card>
                 </div>
               </div>

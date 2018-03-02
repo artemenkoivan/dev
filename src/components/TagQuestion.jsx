@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { splitAnswersAmount } from '../helpers/questionHelpers'
 import countAmount from '../helpers/countAmount'

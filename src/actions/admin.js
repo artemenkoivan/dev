@@ -9,6 +9,7 @@ import {
   API_BASE,
   CONFIG
 } from '../helpers/consts'
+import latestAction from '../helpers/latestAction'
 
 CONFIG.headers.userId = localStorage.getItem('_id')
 
@@ -63,6 +64,8 @@ export function createTag(data) {
     dispatch({
       type: TAG_CREATE
     })
+
+    latestAction('Добавлен тег', data.title)
   }
 }
 
@@ -72,6 +75,8 @@ export function editUser(form) {
 
     if (response.status === 200) {
       dispatch({ type: EDIT_USER })
+
+      latestAction('Пользователь изменен', form.userName)
     }
   }
 }

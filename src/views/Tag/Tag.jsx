@@ -20,8 +20,7 @@ class Tag extends Component {
 
   render() {
     const {
-      props: { match: { params: { name } }, searchTag, follow, authenticated },
-      state: {}
+      props: { match: { params: { name } }, searchTag, follow, authenticated }
     } = this
     const currentTag = searchTag[0]
 

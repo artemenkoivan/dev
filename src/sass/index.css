@@ -344,7 +344,33 @@ a {
     margin-top: 150px; } }
 
 #adminpage .recent-actions .el-card__body {
-  padding: 20px 10px; }
+  padding: 10px !important; }
+
+#adminpage .recent-actions__range-box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 15px 0 0 0;
+  padding: 0; }
+
+#adminpage .recent-actions__range-value {
+  display: block;
+  margin-bottom: 5px; }
+
+#adminpage .recent-actions__range[type='range'] {
+  display: block;
+  -webkit-appearance: none !important;
+  background: #e5e9f2;
+  height: 7px;
+  outline: none; }
+
+#adminpage .recent-actions__range::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  background: #20a0ff;
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  border-radius: 2px; }
 
 #adminpage .recent-actions__title {
   padding: 0;
@@ -356,11 +382,16 @@ a {
   width: 100%;
   display: flex;
   margin: 5px 0;
+  padding: 0 2px;
+  overflow-x: scroll;
+  color: #1f2d3d;
   justify-content: flex-start;
-  align-items: center; }
+  align-items: center;
+  border: 1px solid #e5e9f2;
+  background-color: white; }
 
 #adminpage .recent-actions .text {
-  font-size: 10px; }
+  font-size: 12px; }
 
 #adminpage .users-table,
 #adminpage .tags-table {

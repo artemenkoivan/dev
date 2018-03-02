@@ -19,7 +19,7 @@ class Feed extends Component {
   }
 
   render() {
-    const { props: { userName, profile } } = this
+    const { props: { profile } } = this
 
     return (
       <DocumentTitle title="GeekAsks –– Моя лента">
