@@ -11,10 +11,12 @@ import moment from 'moment'
 class Admin extends Component {
   constructor() {
     super()
+    const latestActions =
+      JSON.parse(localStorage.getItem('latestActions')) || []
 
     this.state = {
       filteredUsers: [],
-      actionsRange: 5,
+      actionsRange: latestActions.length < 5 ? latestActions.length : 5,
       tagColumns: [
         { type: 'index' },
         {
