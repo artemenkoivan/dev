@@ -65,7 +65,7 @@ class Profile extends Component {
         }
       >
         <div id="profilepage" className="page">
-          {!profile.userName || !noAvatar ? (
+          {!noAvatar || !profile.userName ? (
             <Loading fullscreen={true} text="Загружаем..." />
           ) : (
             <div>

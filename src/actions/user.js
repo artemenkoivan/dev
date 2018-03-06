@@ -35,12 +35,16 @@ export function getProfile(name) {
   return async function(dispatch) {
     let profile = await axios.get(`${API_BASE}/profile/${name}`)
 
-    setTimeout(() => {
-      dispatch({
-        type: GET_PROFILE,
-        payload: profile.data.profile
-      })
-    }, 500)
+    if (profile.data.status === 404) {
+      window.location.href = '/'
+    } else {
+      setTimeout(() => {
+        dispatch({
+          type: GET_PROFILE,
+          payload: profile.data.profile
+        })
+      }, 500)
+    }
   }
 }
 

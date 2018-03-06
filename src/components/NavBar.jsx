@@ -13,29 +13,26 @@ class NavBar extends Component {
         </Menu.Item>
         <Menu.SubMenu index="2" title={userName}>
           <Menu.Item index="2-1">
-            <Link to={`/questions/${userName}`}>Мои вопросы</Link>
-          </Menu.Item>
-          <Menu.Item index="2-2">
             <Badge value={2}>
               <Link to="/notifications">Уведомления</Link>
             </Badge>
           </Menu.Item>
-          <Menu.Item index="2-3">
+          <Menu.Item index="2-2">
             <Link to={`/user/${userName}`}>Профиль</Link>
           </Menu.Item>
-          <Menu.Item index="2-4" className="sub-sub-menu">
+          <Menu.Item index="2-3" className="sub-sub-menu">
             <Link to="/settings">
               <i className="el-icon-setting" />Настройки
             </Link>
           </Menu.Item>
           {accessLevel && (
-            <Menu.Item index="2-5">
+            <Menu.Item index="2-4">
               <Link to="/admin">
                 <i className="el-icon-edit" />Admin
               </Link>
             </Menu.Item>
           )}
-          <Menu.Item index={accessLevel ? '2-6' : '2-5'}>
+          <Menu.Item index={accessLevel ? '2-5' : '2-4'}>
             <a href="" onClick={logout}>
               <i className="el-icon-arrow-left" />Выход
             </a>

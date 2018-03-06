@@ -444,31 +444,31 @@ a {
     width: 50%;
     height: 150px; }
 
-#homepage {
-  height: 2000px; }
-  #homepage .el-card__header {
-    text-align: center;
-    padding: 10px 0; }
-  #homepage .questions-more {
-    margin-top: 25px;
-    width: 100%;
-    display: block; }
-  #homepage .popular-tags {
-    padding: 0 0 10px 0; }
-    #homepage .popular-tags .el-card__body {
-      margin: -20px; }
-    #homepage .popular-tags__list {
-      margin: 0;
-      padding: 0 0 0 0;
-      list-style-type: none; }
-      #homepage .popular-tags__list__item {
-        margin-top: 10px;
-        text-align: center; }
-        #homepage .popular-tags__list__item a {
-          display: inline-block; }
-          #homepage .popular-tags__list__item a img {
-            display: block;
-            width: 25px; }
+#homepage .el-card__header {
+  text-align: center;
+  padding: 10px 0; }
+
+#homepage .questions-more {
+  margin-top: 25px;
+  width: 100%;
+  display: block; }
+
+#homepage .popular-tags {
+  padding: 0 0 10px 0; }
+  #homepage .popular-tags .el-card__body {
+    margin: -20px; }
+  #homepage .popular-tags__list {
+    margin: 0;
+    padding: 0 0 0 0;
+    list-style-type: none; }
+    #homepage .popular-tags__list__item {
+      margin-top: 10px;
+      text-align: center; }
+      #homepage .popular-tags__list__item a {
+        display: inline-block; }
+        #homepage .popular-tags__list__item a img {
+          display: block;
+          width: 25px; }
 
 @media screen and (max-width: 767px) {
   .search-box {

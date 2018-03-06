@@ -42,6 +42,7 @@ router.get('/admin/users', authenticate, admin.allUsers)
 router.get('/admin/user/:name', authenticate, admin.getUser)
 router.post('/admin/tag', authenticate, tag.create)
 router.post('/admin/user/edit', authenticate, admin.editUser)
+router.delete('/admin/user/:id', authenticate, admin.removeUser)
 
 // Question routes
 router.post('/question', authenticate, question.create)

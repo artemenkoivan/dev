@@ -14,7 +14,7 @@ export default function QuestionListItem({ question, index, isSolved }) {
   ])
 
   return (
-    <div className="questions-feed__item" key={index}>
+    <div className="questions-feed__item" key={index} style={{ marginTop: 0 }}>
       <div className="questions-feed__item__tags box box-row">
         {question.tags.map((tag, index) => {
           return (

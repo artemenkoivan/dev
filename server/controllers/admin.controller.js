@@ -1,6 +1,7 @@
 const User = require('../models/User')
-
-let hello = ''
+const Question = require('../models/Question')
+const Answer = require('../models/Answer')
+const fs = require('fs')
 
 exports.allUsers = function(req, res, next) {
   const id = req.get('userId')
@@ -113,5 +114,58 @@ exports.editUser = function(req, res, next) {
         message: 'Пользователь изменен!'
       })
     })
+  })
+}
+
+exports.removeUser = function(req, res, next) {
+  const _id = req.params.id
+
+  User.findOne({ _id }).then(user => {
+    if (!user) {
+      return res.json({
+        status: 404,
+        message: 'Пользователь не найден'
+      })
+    }
+
+    if (user.questions.length > 0) {
+      Question.remove({ _id: { $in: user.questions } }).then(() => {
+        if (user.answers.length > 0) {
+          Answer.remove({ _id: { $in: user.answers } }).then(() => {
+            fs.unlink(`../src/uploads/avatars/${user.avatar}`)
+            user.remove()
+            return res.json({
+              status: 200,
+              message: 'Пользователь удален'
+            })
+          })
+        } else {
+          fs.unlink(`../src/uploads/avatars/${user.avatar}`)
+          user.remove()
+          return res.json({
+            status: 200,
+            message: 'Пользователь удален'
+          })
+        }
+      })
+    } else {
+      if (user.answers.length > 0) {
+        Answer.remove({ _id: { $in: user.answers } }).then(() => {
+          fs.unlink(`../src/uploads/avatars/${user.avatar}`)
+          user.remove()
+          return res.json({
+            status: 200,
+            message: 'Пользователь удален'
+          })
+        })
+      } else {
+        fs.unlink(`../src/uploads/avatars/${user.avatar}`)
+        user.remove()
+        return res.json({
+          status: 200,
+          message: 'Пользователь удален'
+        })
+      }
+    }
   })
 }

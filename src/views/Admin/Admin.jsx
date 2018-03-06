@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import DocumentTitle from 'react-document-title'
 import Header from '../../components/Header'
 import { Link } from 'react-router-dom'
-import { Table, Button, Icon, Card, Loading, Tag } from 'element-react'
-import { getAllUsers } from '../../actions/admin'
+import { Table, Button, Icon, Card, Loading, Tag, Message } from 'element-react'
+import { getAllUsers, removeUser } from '../../actions/admin'
 import { getAllTags } from '../../actions/tag'
 import moment from 'moment'
 
@@ -33,7 +33,7 @@ class Admin extends Component {
             if (data.cover) {
               const tagImage = require(`../../uploads/tags/${data.cover}`)
 
-              if (tagImage !== undefined) {
+              if (tagImage !== undefined || tagImage !== null) {
                 return (
                   <span>
                     <span>
@@ -137,9 +137,11 @@ class Admin extends Component {
     )
 
     if (remove) {
-      setTimeout(() => {
-        alert('Removed')
-      }, 500)
+      if (row._id === localStorage.getItem('_id')) {
+        return Message.error('Вы не можете удалить сами себя')
+      }
+
+      this.props.removeUser(row._id)
     }
   }
 
@@ -167,8 +169,6 @@ class Admin extends Component {
   }
 
   setRange = value => {
-    console.log(value)
-
     this.setState({ actionsRange: value })
   }
 
@@ -258,32 +258,35 @@ class Admin extends Component {
                           Недавние действия
                         </p>
 
-                        <p className="recent-actions__range-box">
-                          <span className="recent-actions__range-value">
-                            {actionsRange}/{latestActions.length}
-                          </span>
-                          <input
-                            type="range"
-                            className="recent-actions__range"
-                            step="1"
-                            min="1"
-                            max={latestActions.length}
-                            value={actionsRange}
-                            onChange={e => setRange(e.target.value)}
-                          />
-                        </p>
+                        {latestActions && (
+                          <p className="recent-actions__range-box">
+                            <span className="recent-actions__range-value">
+                              {actionsRange}/{latestActions.length}
+                            </span>
+                            <input
+                              type="range"
+                              className="recent-actions__range"
+                              step="1"
+                              min="1"
+                              max={latestActions.length}
+                              value={actionsRange}
+                              onChange={e => setRange(e.target.value)}
+                            />
+                          </p>
+                        )}
                       </div>
                     }
                   >
-                    {latestActions
-                      .slice(-actionsRange)
-                      .map((el, index, arr) => {
-                        return (
-                          <Tag className="text item" key={index}>
-                            {el.action}
-                          </Tag>
-                        )
-                      })}
+                    {latestActions &&
+                      latestActions
+                        .slice(-actionsRange)
+                        .map((el, index, arr) => {
+                          return (
+                            <Tag className="text item" key={index}>
+                              {el.action}
+                            </Tag>
+                          )
+                        })}
                   </Card>
                 </div>
               </div>
@@ -323,6 +326,9 @@ function mapDispatchToProps(dispatch) {
     },
     getAllTags() {
       dispatch(getAllTags())
+    },
+    removeUser(id) {
+      dispatch(removeUser(id))
     }
   }
 }

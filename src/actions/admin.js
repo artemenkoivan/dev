@@ -80,3 +80,11 @@ export function editUser(form) {
     }
   }
 }
+
+export function removeUser(id) {
+  return async function(dispatch) {
+    let response = await axios.delete(`${API_BASE}/admin/user/${id}`, CONFIG)
+
+    console.log(response)
+  }
+}

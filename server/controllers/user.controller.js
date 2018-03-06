@@ -37,13 +37,23 @@ exports.getProfile = function(req, res, next) {
     .populate('questions answers tags')
     .then(user => {
       if (!user) {
-        return res.status(404).json({
+        return res.json({
+          status: 404,
           message: 'Пользователь не найден'
         })
       }
 
       let questions = []
       let counter = 0
+
+      if (!user.tags.length) {
+        let data = { ...user._doc, noFeed: true }
+
+        return res.json({
+          status: 200,
+          profile: data
+        })
+      }
 
       function whenDone(questions) {
         let counter = 0

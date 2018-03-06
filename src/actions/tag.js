@@ -15,12 +15,10 @@ export function getAllTags() {
 
     let tags = await axios.get(`${API_BASE}/tags`)
 
-    setTimeout(() => {
-      dispatch({
-        type: TAG_GET_ALL,
-        payload: tags.data.data
-      })
-    }, 500)
+    dispatch({
+      type: TAG_GET_ALL,
+      payload: tags.data.data
+    })
   }
 }
 
@@ -28,7 +26,7 @@ export function getTag(name) {
   return async function(dispatch) {
     let tag = await axios.get(`${API_BASE}/tag/${name}`)
 
-    return dispatch({
+    dispatch({
       type: TAG_GET,
       payload: tag.data.data
     })
