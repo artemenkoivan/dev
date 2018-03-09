@@ -53,6 +53,33 @@ export function getOneQuestion(id) {
   }
 }
 
+export function saveEditedAnswer(body) {
+  return async function(dispatch) {
+    let answer = await axios.put(
+      `${API_BASE}/question/answer/edit`,
+      body,
+      CONFIG
+    )
+
+    if (answer.data.status === 200) {
+      dispatch(getOneQuestion(body.questionId))
+    }
+  }
+}
+
+export function deleteAnswer(data) {
+  return async function(dispatch) {
+    let remove = await axios.delete(
+      `${API_BASE}/question/${data.questionId}/answer/${data._id}`,
+      CONFIG
+    )
+
+    console.log(remove)
+
+    dispatch(getOneQuestion(data.questionId))
+  }
+}
+
 export function getQuestionsLimited(limit) {
   return async function(dispatch) {
     dispatch({

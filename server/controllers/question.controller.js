@@ -199,6 +199,38 @@ exports.getOne = function(req, res, next) {
     })
 }
 
+exports.saveEditedAnswer = function(req, res, next) {
+  const { body, _id } = req.body
+
+  Answer.findOne({ _id }).then(answer => {
+    answer.body = body
+    answer.save()
+
+    res.json({
+      status: 200,
+      message: 'Ответ изменен'
+    })
+  })
+}
+
+exports.removeAnswer = function(req, res, next) {
+  const _id = req.params.id
+  const questionId = req.params.questionId
+
+  Answer.findOne({ _id }).then(answer => {
+    Question.findOne({ _id: questionId }).then(question => {
+      question.answers.pull(_id)
+      question.save()
+      answer.remove()
+
+      res.json({
+        status: 200,
+        message: 'Ответ удален!'
+      })
+    })
+  })
+}
+
 exports.addAnswer = function(req, res, next) {
   const { body, author, userName, questionId } = req.body
 

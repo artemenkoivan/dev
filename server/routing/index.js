@@ -52,6 +52,12 @@ router.get('/question/:id', question.getOne)
 router.post('/question/answer', authenticate, question.addAnswer)
 router.post('/question/answer/like', authenticate, question.likeAnswer)
 router.post('/question/answer/solve', authenticate, question.markSolved)
+router.put('/question/answer/edit', authenticate, question.saveEditedAnswer)
+router.delete(
+  '/question/:questionId/answer/:id',
+  authenticate,
+  question.removeAnswer
+)
 
 // Search route
 router.get('/search/:any', search.search)

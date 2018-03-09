@@ -58,9 +58,10 @@ class QuestionPage extends Component {
   submitAnswer = e => {
     e.preventDefault()
     const { singleQuestion, getOneQuestion, addAnswer, userName } = this.props
+    let body = this.refs.textarea.refs.textarea.value
 
     const answer = {
-      body: this.refs.textarea.refs.textarea.value,
+      body: JSON.stringify(body),
       author: localStorage.getItem('_id'),
       userName,
       questionId: singleQuestion.questionId
@@ -68,6 +69,7 @@ class QuestionPage extends Component {
 
     addAnswer(answer)
     getOneQuestion(singleQuestion.questionId)
+    this.refs.textarea.refs.textarea.value = ''
   }
 
   render() {
@@ -196,6 +198,7 @@ class QuestionPage extends Component {
                             key={index}
                             answerId={item._id}
                             userName={userName}
+                            isAuthor={item.author.name === userName}
                             isSolved={item.solved}
                             markSolved={markSolved}
                             singleQuestion={singleQuestion}
