@@ -56,6 +56,7 @@ class Profile extends Component {
       percent = 0
     }
 
+    console.log(profile)
     return (
       <DocumentTitle
         title={

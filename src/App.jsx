@@ -13,6 +13,7 @@ import QuestionPage from './views/QuestionPage/QuestionPage'
 import Profile from './views/Profile/Profile'
 import UserSettings from './views/UserSettings/UserSettings'
 import EditUser from './views/Admin/EditUser'
+import EditTag from './views/Admin/EditTag'
 import Tag from './views/Tag/Tag'
 import Feed from './views/Feed/Feed'
 
@@ -49,6 +50,13 @@ class App extends Component {
               path="/question/new"
               component={NewQuestion}
               canAccess={authenticated}
+              redirect="/"
+            />
+            <ProtectedRoute
+              exact
+              path="/admin/tag/edit/:name"
+              component={EditTag}
+              canAccess={!!accessLevel}
               redirect="/"
             />
             <ProtectedRoute

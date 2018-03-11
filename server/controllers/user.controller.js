@@ -48,11 +48,42 @@ exports.getProfile = function(req, res, next) {
 
       if (!user.tags.length) {
         let data = { ...user._doc, noFeed: true }
+        let questions = []
+        let counter = 0
 
-        return res.json({
-          status: 200,
-          profile: data
-        })
+        if (!user.questions.length) {
+          return res.json({
+            status: 200,
+            profile: data
+          })
+        } else {
+          user.questions.forEach((element, index) => {
+            counter++
+
+            Question.findOne({ _id: element._id })
+              .populate('tags')
+              .then(el => {
+                questions.push({
+                  title: el.title,
+                  solved: el.solved,
+                  answers: countAmount(el.answers.length, [
+                    'ответ',
+                    'ответа',
+                    'ответов'
+                  ]),
+                  tags: el.tags.map(tag => {
+                    return { title: tag.title, cover: tag.cover }
+                  }),
+                  createdAt: el.createdAt,
+                  _id: el._id
+                })
+
+                if (counter === questions.length) {
+                  whenDone(questions)
+                }
+              })
+          })
+        }
       }
 
       function whenDone(questions) {
@@ -102,6 +133,32 @@ exports.getProfile = function(req, res, next) {
                   })
               })
             }
+          })
+        } else {
+          user.questions.forEach(questionId => {
+            counter++
+
+            Question.findOne({ _id: questionId })
+              .populate('tags')
+              .then(questionItem => {
+                feed.push(questionItem)
+                if (counter === feed.length) {
+                  res.status(200).json({
+                    profile: {
+                      userName: user.userName,
+                      email: user.email,
+                      _id: user._id,
+                      description: user.description,
+                      avatar: user.avatar,
+                      createdAt: user.createdAt,
+                      questions,
+                      answers: user.answers,
+                      tags: user.tags,
+                      noFeed: true
+                    }
+                  })
+                }
+              })
           })
         }
       }

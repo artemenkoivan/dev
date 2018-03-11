@@ -20,7 +20,6 @@ class QuestionAnswer extends Component {
   toggleAnswerEdit = () => {
     this.setState({ editing: !this.state.editing })
   }
-
   _parseString(body) {
     if (!isUndefined(body)) {
       let str = JSON.parse(body)
@@ -207,10 +206,6 @@ class QuestionAnswer extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {}
-}
-
 const mapDispatchToProps = dispatch => {
   return {
     deleteAnswer(id) {
@@ -222,4 +217,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionAnswer)
+export default connect(null, mapDispatchToProps)(QuestionAnswer)
