@@ -147,7 +147,8 @@ class QuestionAnswer extends Component {
               props.likeAnswer({
                 id: props.item._id,
                 userName: props.userName,
-                questionId: props.singleQuestion.questionId
+                questionId: props.singleQuestion.questionId,
+                toUser: props.item.author
               })
             }
             plain={!props.item.likes.length}

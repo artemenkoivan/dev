@@ -16,6 +16,7 @@ const UserSchema = new Schema({
   password: String,
   accessLevel: 0,
   avatar: String,
+  notifications: [{ type: Schema.Types.ObjectId, ref: 'Notification' }],
   description: String,
   questions: [{ type: Schema.Types.ObjectId, ref: 'Question' }],
   answers: [{ type: Schema.Types.ObjectId, ref: 'Answer' }],

@@ -16,6 +16,7 @@ import EditUser from './views/Admin/EditUser'
 import EditTag from './views/Admin/EditTag'
 import Tag from './views/Tag/Tag'
 import Feed from './views/Feed/Feed'
+import Notifications from './views/Notifications/Notifications'
 
 class App extends Component {
   render() {
@@ -75,6 +76,13 @@ class App extends Component {
               exact
               path="/settings"
               component={UserSettings}
+              redirect="/"
+              canAccess={authenticated}
+            />
+            <ProtectedRoute
+              exact
+              path="/notifications"
+              component={Notifications}
               redirect="/"
               canAccess={authenticated}
             />

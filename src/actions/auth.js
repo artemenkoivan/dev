@@ -36,6 +36,7 @@ export function login(data) {
 
         if (loginResponse.data.access_token) {
           localStorage.setItem('access_token', loginResponse.data.access_token)
+          localStorage.setItem('userName', loginResponse.data.user.userName)
           localStorage.setItem('_id', loginResponse.data.user.id)
 
           dispatch({

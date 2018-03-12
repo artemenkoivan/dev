@@ -4,7 +4,7 @@ import { Menu, Badge } from 'element-react'
 
 class NavBar extends Component {
   render() {
-    const { userName, logout, accessLevel } = this.props
+    const { userName, logout, accessLevel, notifications } = this.props
 
     return (
       <Menu mode="horizontal" className="main-header__navbar">
@@ -13,7 +13,7 @@ class NavBar extends Component {
         </Menu.Item>
         <Menu.SubMenu index="2" title={userName}>
           <Menu.Item index="2-1">
-            <Badge value={2}>
+            <Badge value={notifications}>
               <Link to="/notifications">Уведомления</Link>
             </Badge>
           </Menu.Item>

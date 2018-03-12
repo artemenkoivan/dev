@@ -714,3 +714,6 @@ a {
   #tagPage .tag-questions__item {
     padding: 15px 0;
     border-bottom: 1px solid #e5e9f2; }
+
+#notificationsPage .notifications-loader {
+  margin-top: 50px; }

@@ -3,13 +3,18 @@ import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import logo from '../assets/logo-transparent.png'
 import { Link } from 'react-router-dom'
+import { getProfile } from '../actions/user'
 import { Button } from 'element-react'
 import NavBar from './NavBar'
 import { logout } from '../actions/auth'
 
 class Header extends Component {
+  componentDidMount() {
+    this.props.getProfile(localStorage.getItem('userName'))
+  }
+
   render() {
-    let { authenticated, userName, logout, accessLevel } = this.props
+    let { authenticated, userName, logout, accessLevel, profile } = this.props
 
     return (
       <div className="main-header">
@@ -25,9 +30,11 @@ class Header extends Component {
             <div className="col-md-10 col-sm-10 col-xs-10">
               <div className="box box-v-center box-h-end">
                 {authenticated &&
+                  profile.notifications &&
                   logout && (
                     <NavBar
                       userName={userName}
+                      notifications={profile.notifications.length}
                       accessLevel={!!accessLevel}
                       logout={logout}
                     />
@@ -65,14 +72,18 @@ function mapStateToProps(state) {
     authenticated: state.auth.get('authenticated'),
     userName: state.user.get('userName'),
     email: state.user.get('email'),
-    accessLevel: state.user.get('accessLevel')
+    accessLevel: state.user.get('accessLevel'),
+    profile: state.user.get('profile')
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    logout: () => {
+    logout() {
       dispatch(logout())
+    },
+    getProfile(name) {
+      dispatch(getProfile(name))
     }
   }
 }

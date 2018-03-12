@@ -3,6 +3,7 @@ const Question = require('../models/Question')
 const Answer = require('../models/Answer')
 const Tag = require('../models/Tag')
 const countAmount = require('../../src/helpers/countAmount')
+const Notification = require('../models/Notification')
 
 exports.create = function(req, res, next) {
   const { title, body, tags, userId } = req.body
@@ -308,7 +309,7 @@ exports.addAnswer = function(req, res, next) {
 }
 
 exports.likeAnswer = function(req, res, next) {
-  const { id, userName } = req.body
+  const { id, userName, toUser } = req.body
 
   Answer.findOne({ _id: id })
     .then(answer => {
@@ -325,8 +326,19 @@ exports.likeAnswer = function(req, res, next) {
         answer.likes.forEach((el, index, likes) => {
           if (el === userName) {
             likes.pull(userName)
+            return
           } else {
             likes.push(userName)
+
+            let likeNotification = new Notification({
+              title: `${userName} понравился ваш ответ`
+            })
+
+            User.findOne({ _id: toUser._id }).then(user => {
+              user.notifications.push(likeNotification)
+              likeNotification.save()
+              user.save()
+            })
           }
         })
       }

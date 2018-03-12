@@ -12,7 +12,7 @@ const ProfileAnswers = ({ props }) => {
           className="questions-details__title title title--xs title--black"
           to={`/question/${questionReference}`}
         >
-          {props.body}
+          {JSON.parse(props.body)}
         </Link>
         <footer>
           <span className="profile-answer-item__solved">
