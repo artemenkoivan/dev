@@ -356,7 +356,17 @@ exports.likeAnswer = function(req, res, next) {
 }
 
 exports.markSolved = function(req, res, next) {
-  const { _id, questionId } = req.body
+  const { _id, questionId, questionAuthor, toUser } = req.body
+
+  let solveNotification = new Notification({
+    title: `${questionAuthor} отметил ваш ответ решением`
+  })
+
+  User.findOne({ _id: toUser._id }).then(user => {
+    user.notifications.push(solveNotification)
+    solveNotification.save()
+    user.save()
+  })
 
   Answer.findOne({ _id }).then(answer => {
     if (answer) {

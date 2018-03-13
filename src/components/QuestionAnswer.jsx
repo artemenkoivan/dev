@@ -164,7 +164,9 @@ class QuestionAnswer extends Component {
               onClick={() =>
                 props.markSolved({
                   answerId: props.answerId,
-                  questionId: props.singleQuestion.questionId
+                  questionId: props.singleQuestion.questionId,
+                  toUser: props.item.author,
+                  questionAuthor: props.singleQuestion.author.userName
                 })
               }
             >

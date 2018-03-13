@@ -117,11 +117,11 @@ export function likeAnswer(data) {
   }
 }
 
-export function markSolved({ answerId, questionId }) {
+export function markSolved({ answerId, questionId, toUser, questionAuthor }) {
   return async function(dispatch) {
     await axios.post(
       `${API_BASE}/question/answer/solve`,
-      { _id: answerId, questionId },
+      { _id: answerId, questionId, toUser, questionAuthor },
       CONFIG
     )
 
