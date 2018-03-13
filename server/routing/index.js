@@ -10,6 +10,7 @@ const tag = require('../controllers/tag.controller')
 const admin = require('../controllers/admin.controller')
 const search = require('../controllers/search.controller')
 const question = require('../controllers/question.controller')
+const notification = require('../controllers/notification.controller')
 
 const router = express.Router()
 
@@ -31,6 +32,9 @@ router.get('/user/:id', authenticate, user.getUserInfo)
 router.get('/profile/:name', user.getProfile)
 router.post('/profile/edit', authenticate, user.editProfile)
 router.post('/profile/edit-avatar', authenticate, user.editProfileAvatar)
+
+// Notifications
+router.delete('/notification/:id', authenticate, notification.remove)
 
 // Tag routes
 router.get('/tags', tag.getAll)

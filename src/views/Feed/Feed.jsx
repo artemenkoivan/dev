@@ -21,7 +21,6 @@ class Feed extends Component {
   render() {
     const { props: { profile } } = this
 
-    console.log(profile)
     if (profile.noFeed) {
       return (
         <div className="page" id="feedPage">

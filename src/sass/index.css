@@ -717,3 +717,9 @@ a {
 
 #notificationsPage .notifications-loader {
   margin-top: 50px; }
+
+#notificationsPage .notifications-list__item {
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #eff2f7;
+  border-radius: 2px; }
