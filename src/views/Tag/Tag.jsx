@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import propTypes from 'prop-types'
 import DocumentTitle from 'react-document-title'
 import { connect } from 'react-redux'
-import { Loading, Button } from 'element-react'
+import { Loading, Button, Tooltip } from 'element-react'
 import Header from '../../components/Header'
 import TagQuestion from '../../components/TagQuestion'
 import { getTag, follow } from '../../actions/tag'
@@ -47,13 +47,20 @@ class Tag extends Component {
                 </p>
 
                 {authenticated && (
-                  <Button
-                    type="success"
-                    size="small"
-                    onClick={() => follow(currentTag._id)}
+                  <Tooltip
+                    content={`Подписчиков - ${
+                      currentTag.data.subscribers.length
+                    }`}
+                    placement="left"
                   >
-                    Подписаться {currentTag.data.subscribers.length}
-                  </Button>
+                    <Button
+                      type="success"
+                      size="small"
+                      onClick={() => follow(currentTag._id)}
+                    >
+                      Подписаться {currentTag.data.subscribers.length}
+                    </Button>
+                  </Tooltip>
                 )}
               </div>
               <div className="tag-questions">
