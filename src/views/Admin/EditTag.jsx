@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import DocumentTitle from 'react-document-title'
 import { Loading, Form, Input, Button } from 'element-react'
 import Header from '../../components/Header'
-import { getTag } from '../../actions/tag'
+import { getTag, editTag } from '../../actions/tag'
 import { connect } from 'react-redux'
+import Upload from '../../components/Upload'
 import { Link } from 'react-router-dom'
 
 class EditTag extends Component {
@@ -13,8 +14,10 @@ class EditTag extends Component {
     this.state = {
       form: {
         title: '',
-        description: ''
-      }
+        description: '',
+        cover: ''
+      },
+      imagePreviewUrl: ''
     }
   }
 
@@ -27,29 +30,49 @@ class EditTag extends Component {
     this.setState({
       form: {
         title: tag[0].data.title,
-        description: tag[0].data.description
+        description: tag[0].data.description,
+        cover: tag[0].data.cover
       }
     })
   }
 
   onFormSubmit = event => {
     event.preventDefault()
-    const { title, description } = this.state.form
+    const { title, description, cover } = this.state.form
     const {
       title: defaultTitle,
-      description: defaultDescription
+      description: defaultDescription,
+      cover: defaultCover
     } = this.props.tag[0].data
+
+    let image = new FormData()
+    image.append('cover', cover)
 
     const form = {
       title: title ? title : defaultTitle,
-      description: description ? description : defaultDescription
+      description: description ? description : defaultDescription,
+      cover: cover ? image : null,
+      _id: this.props.tag[0]._id
     }
 
-    console.log(form)
+    this.props.editTag(form)
   }
 
   onFormChange = (key, value) => {
     this.setState(state => ({ form: { ...state.form, [key]: value } }))
+  }
+
+  handleImageChange = e => {
+    let reader = new FileReader()
+
+    reader.onloadend = () => {
+      this.setState({
+        imagePreviewUrl: reader.result
+      })
+    }
+
+    reader.readAsDataURL(e.target.files[0])
+    this.setState({ form: { ...this.state.form, cover: e.target.files[0] } })
   }
 
   render() {
@@ -58,7 +81,8 @@ class EditTag extends Component {
     const {
       onFormChange,
       onFormSubmit,
-      state: { form: { title, description } }
+      handleImageChange,
+      state: { form: { title, description }, imagePreviewUrl }
     } = this
     const currentTag = tag[0]
 
@@ -93,8 +117,47 @@ class EditTag extends Component {
                           onChange={e => onFormChange('description', e)}
                         />
                       </Form.Item>
+                      <Form.Item className="tag-cover-upload">
+                        {imagePreviewUrl ? (
+                          <div
+                            className="tag-cover-upload__preview"
+                            style={{
+                              backgroundImage: `url(${imagePreviewUrl})`,
+                              width: 100,
+                              height: 100,
+                              display: 'block',
+                              backgroundSize: 'cover'
+                            }}
+                          />
+                        ) : (
+                          <img
+                            className="tag-cover-upload__preview"
+                            style={{
+                              width: 100,
+                              height: 100,
+                              display: 'block'
+                            }}
+                            src={
+                              currentTag.data.cover
+                                ? require(`../../uploads/tags/${
+                                    currentTag.data.cover
+                                  }`)
+                                : ''
+                            }
+                          />
+                        )}
 
-                      <Button nativeType="submit">Сохранить</Button>
+                        <Upload
+                          type="success"
+                          size="small"
+                          plain={true}
+                          action={handleImageChange}
+                        />
+                      </Form.Item>
+
+                      <Button nativeType="submit" type="success">
+                        Сохранить
+                      </Button>
                     </Form>
                   </div>
                 ) : (
@@ -113,6 +176,9 @@ const mapDispatchToProps = dispatch => {
   return {
     getTag(name) {
       dispatch(getTag(name))
+    },
+    editTag(data) {
+      dispatch(editTag(data))
     }
   }
 }

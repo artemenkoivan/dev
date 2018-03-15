@@ -132,6 +132,45 @@ exports.getOne = function(req, res, next) {
     })
 }
 
+exports.editTag = function(req, res, next) {
+  const { _id, title, description } = req.body
+
+  Tag.findOne({ _id }).then(tag => {
+    tag.title = title
+    tag.description = description
+    tag.save()
+
+    res.json({
+      status: 200,
+      message: 'Тег успешно изменен',
+      data: title
+    })
+  })
+}
+
+exports.editTagAvatar = function(req, res, next) {
+  const _id = req.get('tagId')
+
+  upload(req, res, error => {
+    if (error) {
+      return res.json({
+        status: 400,
+        message: error.message
+      })
+    }
+
+    Tag.findOne({ _id }).then(tag => {
+      tag.cover = req.file.filename
+      tag.save()
+
+      res.json({
+        status: 200,
+        message: 'Картинка тега успешно изменена'
+      })
+    })
+  })
+}
+
 exports.follow = function(req, res, next) {
   const { tagId, userId } = req.body
 
