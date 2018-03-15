@@ -113,6 +113,8 @@ class EditTag extends Component {
                       </Form.Item>
                       <Form.Item>
                         <Input
+                          type="textarea"
+                          autosize={{ minRows: 5, maxRows: 5 }}
                           value={description}
                           onChange={e => onFormChange('description', e)}
                         />
