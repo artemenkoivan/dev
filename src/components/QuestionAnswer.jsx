@@ -155,7 +155,6 @@ class QuestionAnswer extends Component {
           >
             Нравится ({props.item.likes.length})
           </Button>
-
           {props.singleQuestion.author._id === localStorage.getItem('_id') && (
             <Button
               size="small"
@@ -174,35 +173,26 @@ class QuestionAnswer extends Component {
             </Button>
           )}
 
-          <a
-            href={`#${props.item._id}`}
-            className="answer-comments-link text text--xs"
-          >
-            {props.isAuthor && (
-              <Button.Group>
-                <Button type="danger" size="small" onClick={handleDeleteAnswer}>
-                  Удалить
+          {props.isAuthor && (
+            <Button.Group>
+              <Button type="danger" size="small" onClick={handleDeleteAnswer}>
+                Удалить
+              </Button>
+              {editing ? (
+                <Button
+                  type="success"
+                  size="small"
+                  onClick={submitEditedAnswer}
+                >
+                  Сохранить
                 </Button>
-                {editing ? (
-                  <Button
-                    type="success"
-                    size="small"
-                    onClick={submitEditedAnswer}
-                  >
-                    Сохранить
-                  </Button>
-                ) : (
-                  <Button
-                    type="warning"
-                    size="small"
-                    onClick={toggleAnswerEdit}
-                  >
-                    Изменить
-                  </Button>
-                )}
-              </Button.Group>
-            )}
-          </a>
+              ) : (
+                <Button type="warning" size="small" onClick={toggleAnswerEdit}>
+                  Изменить
+                </Button>
+              )}
+            </Button.Group>
+          )}
         </footer>
       </div>
     )
