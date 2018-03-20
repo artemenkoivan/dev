@@ -36,7 +36,8 @@ export function getProfile(name) {
     let profile = await axios.get(`${API_BASE}/profile/${name}`)
 
     if (profile.data.status === 404) {
-      window.location.href = '/'
+      // TODO handle 404
+      // window.location.href = '/'
     } else {
       setTimeout(() => {
         dispatch({

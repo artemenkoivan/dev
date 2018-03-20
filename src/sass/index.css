@@ -477,10 +477,12 @@ a {
     order: -1;
     margin-bottom: 20px; } }
 
-#newquestionpage .title {
-  padding-bottom: 15px;
-  margin-bottom: 25px;
-  border-bottom: 1px solid #eff2f7; }
+#newquestionpage {
+  margin-bottom: 50px; }
+  #newquestionpage .title {
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eff2f7; }
 
 #questionpage .question-title {
   margin-bottom: 10px;

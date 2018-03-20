@@ -233,7 +233,7 @@ exports.removeAnswer = function(req, res, next) {
 }
 
 exports.addAnswer = function(req, res, next) {
-  const { body, author, userName, questionId } = req.body
+  const { body, author, userName, toUser, questionId } = req.body
 
   if (!body) {
     return res.json({
@@ -241,6 +241,16 @@ exports.addAnswer = function(req, res, next) {
       message: 'Ответ не может быть пустым!'
     })
   }
+
+  let likeNotification = new Notification({
+    title: `${userName} ответил на ваш вопрос`
+  })
+
+  User.findOne({ _id: toUser }).then(user => {
+    user.notifications.push(likeNotification)
+    likeNotification.save()
+    user.save()
+  })
 
   const newAnswer = new Answer({
     body,

@@ -81,6 +81,7 @@ export function register(data) {
             registerResponse.data.access_token
           )
           localStorage.setItem('_id', registerResponse.data.user.id)
+          localStorage.setItem('userName', registerResponse.data.user.userName)
 
           dispatch({
             type: REGISTER_SUCCESS
@@ -102,6 +103,7 @@ export function logout() {
   return function(dispatch) {
     localStorage.removeItem('_id')
     localStorage.removeItem('access_token')
+    localStorage.removeItem('userName')
     removeCookies()
 
     dispatch({

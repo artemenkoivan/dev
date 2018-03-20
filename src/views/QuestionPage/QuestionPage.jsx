@@ -15,6 +15,7 @@ import QuestionAnswer from '../../components/QuestionAnswer'
 import { Link } from 'react-router-dom'
 import Header from '../../components/Header'
 import _ from 'lodash'
+import moment from 'moment'
 
 class QuestionPage extends Component {
   componentDidMount() {
@@ -64,7 +65,8 @@ class QuestionPage extends Component {
       body: JSON.stringify(body),
       author: localStorage.getItem('_id'),
       userName,
-      questionId: singleQuestion.questionId
+      questionId: singleQuestion.questionId,
+      toUser: singleQuestion.author._id
     }
 
     addAnswer(answer)
@@ -183,6 +185,17 @@ class QuestionPage extends Component {
               <div className="answers-container">
                 {singleQuestion.answers && (
                   <div className="row-fluid">
+                    <p>
+                      <span className="text text--gray text--xs">
+                        Вопрос задан{' - '}
+                      </span>
+
+                      <time className="text text--gray text--xs">
+                        {moment(singleQuestion.createdAt)
+                          .startOf('minute')
+                          .fromNow()}
+                      </time>
+                    </p>
                     <h3 className="title title--xs">
                       Ответы на вопрос ({singleQuestion.answers
                         ? singleQuestion.answers.length

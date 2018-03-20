@@ -3,12 +3,19 @@ import propTypes from 'prop-types'
 import { Route, Redirect, withRouter } from 'react-router-dom'
 
 class RouteGuard extends Component {
-
   render() {
-    const { canAccess, component, redirect, path, name, exact, strict } = this.props
+    const {
+      canAccess,
+      component,
+      redirect,
+      path,
+      name,
+      exact,
+      strict
+    } = this.props
     const routeProps = { path, component, name, exact, strict }
 
-    return canAccess ? <Route { ...routeProps } /> : <Redirect to={ redirect } />
+    return canAccess ? <Route {...routeProps} /> : <Redirect to={redirect} />
   }
 }
 
