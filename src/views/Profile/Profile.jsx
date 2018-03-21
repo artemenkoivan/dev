@@ -202,7 +202,9 @@ class Profile extends Component {
                                   }`)}
                                   alt="cover"
                                 />
-                                <p className="title title--xs">{el.title}</p>
+                                <p className="title title--xs text--center">
+                                  {el.title}
+                                </p>
                               </Link>
                             </li>
                           )

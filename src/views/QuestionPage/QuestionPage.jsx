@@ -129,11 +129,16 @@ class QuestionPage extends Component {
                     singleQuestion.tags.map((tag, index) => {
                       return (
                         <li key={index} className="selected-tags__item">
-                          <img
-                            src={require(`../../uploads/tags/${tag.cover}`)}
-                            alt="tag"
-                          />
-                          <span>{tag.title}</span>
+                          <Link
+                            to={`/tag/${tag.title}`}
+                            className="text text--black text--xs box box-v-center"
+                          >
+                            <img
+                              src={require(`../../uploads/tags/${tag.cover}`)}
+                              alt="tag"
+                            />
+                            <span>{tag.title}</span>
+                          </Link>
                         </li>
                       )
                     })}
