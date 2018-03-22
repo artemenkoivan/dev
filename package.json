@@ -12,7 +12,8 @@
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "watch-css":
+      "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start": "cross-env NODE_PATH=src react-scripts start & yarn watch-css",
     "build": "react-scripts build & yarn build-css",
     "test": "react-scripts test --env=jsdom",

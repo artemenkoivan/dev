@@ -99,10 +99,22 @@ exports.getProfile = function(req, res, next) {
 
         if (user.tags.length > 0) {
           user.tags.forEach(tag => {
-            if (!tag.questions) {
+            if (!tag.questions.length) {
               return res.json({
-                status: 404,
-                message: 'Вопросов в теге не найдено'
+                status: 200,
+                profile: {
+                  userName: user.userName,
+                  email: user.email,
+                  _id: user._id,
+                  description: user.description,
+                  avatar: user.avatar,
+                  createdAt: user.createdAt,
+                  questions,
+                  answers: user.answers,
+                  notifications: user.notifications,
+                  tags: user.tags,
+                  feed: []
+                }
               })
             }
 

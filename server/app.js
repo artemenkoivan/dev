@@ -35,9 +35,7 @@ app.listen(config.port, () => {
   console.log(`Server is up & running on http://localhost:${config.port}`)
 })
 
-const dbPort = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || config.db
-
-mongoose.connect(dbPort, { useMongoClient: true }, error => {
+mongoose.connect(config.db, { useMongoClient: true }, error => {
   if (error) {
     console.log(error)
   }
