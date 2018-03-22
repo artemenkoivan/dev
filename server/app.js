@@ -28,14 +28,16 @@ app.use('/api', routes)
 // Routing for html: http://example.com/
 app.use(express.static(path.join(__dirname, '../build')))
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../dist/index.html'))
+  res.sendFile(path.join(__dirname, '../build/index.html'))
 })
 
 app.listen(config.port, () => {
   console.log(`Server is up & running on http://localhost:${config.port}`)
 })
 
-mongoose.connect(config.db, { useMongoClient: true }, error => {
+const dbPort = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || config.db
+
+mongoose.connect(dbPort, { useMongoClient: true }, error => {
   if (error) {
     console.log(error)
   }
