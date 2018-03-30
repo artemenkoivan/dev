@@ -10,6 +10,7 @@ import Search from '../../components/Search'
 import { getAllTags } from '../../actions/tag'
 import { getQuestions, getQuestionsLimited } from '../../actions/question'
 import QuestionListItem from '../../components/QuestionListItem'
+import sortRelevant from '../../helpers/sortRelevant'
 
 class Home extends Component {
   state = {
@@ -66,15 +67,17 @@ class Home extends Component {
       questionsAmount
     } = this.props
 
-    let popularTags = []
+    let relevant = []
 
     tags.forEach((el, index) => {
-      if (popularTags.length <= 10) {
+      if (relevant.length <= 10) {
         if (el.questions.length) {
-          popularTags.push(el)
+          relevant.push(el)
         }
       }
     })
+
+    const popularTags = sortRelevant(relevant)
 
     return (
       <DocumentTitle title="GeekAsks –– Последнее">

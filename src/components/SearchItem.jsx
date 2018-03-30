@@ -2,8 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function SearchItem({ item, index }) {
-  console.log(item)
-
   return (
     <Link to={item.address} key={index} className="search-box__item">
       {item.img && (

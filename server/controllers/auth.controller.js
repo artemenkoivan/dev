@@ -20,7 +20,6 @@ exports.register = function(request, response, next) {
         })
       }
 
-      credentials.accessLevel = 1
       User.create(credentials)
         .then(user => {
           let token = jwt.sign({ _id: user._id }, config.secret)
