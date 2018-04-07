@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import propTypes from 'prop-types'
 import { Button, Input, AutoComplete, Select, Message } from 'element-react'
+import Upload from '../components/Upload'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { connect } from 'react-redux'
 import { githubGist } from 'react-syntax-highlighter/styles/hljs'
@@ -82,6 +83,16 @@ class Editor extends Component {
           label: 'XML'
         }
       ]
+    }
+  }
+
+  _handleAddImage = e => {
+    e.preventDefault()
+
+    let link = prompt('Введите URL картинки', 'http://')
+
+    if (!_.isNull(link) && !_.isEmpty(link)) {
+      this.refs.textarea.refs.textarea.value += `<img src=${link} alt="img"/>`
     }
   }
 
@@ -219,6 +230,7 @@ class Editor extends Component {
       togglePreview,
       _handleAddCode,
       _handleAddLink,
+      _handleAddImage,
       _handleAddBold,
       _handleAddBlockQuote,
       _parseString,
@@ -249,6 +261,8 @@ class Editor extends Component {
                     {el.innerHTML}
                   </SyntaxHighlighter>
                 )
+              case 'IMG':
+                return <img src={el.getAttribute('src')} alt="img" />
               case 'A':
                 return (
                   <a
@@ -336,7 +350,7 @@ class Editor extends Component {
               <Button type="primary" onClick={_handleAddLink}>
                 <i className="fa fa-link" />
               </Button>
-              <Button type="primary">
+              <Button type="primary" onClick={_handleAddImage}>
                 <i className="fa fa-image" />
               </Button>
               <Button type="primary" onClick={_handleAddBold}>

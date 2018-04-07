@@ -176,6 +176,8 @@ class QuestionPage extends Component {
                           )
                         case 'B':
                           return <b key={index}>{el.innerHTML}</b>
+                        case 'IMG':
+                          return <img src={el.getAttribute('src')} alt="img" />
                         case 'BLOCKQUOTE':
                           return (
                             <blockquote key={index}>{el.innerHTML}</blockquote>
